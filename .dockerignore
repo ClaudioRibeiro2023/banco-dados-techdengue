@@ -1,0 +1,35 @@
+__pycache__/
+*.py[cod]
+*.so
+*.db
+*.sqlite3
+*.log
+
+.venv/
+venv/
+env/
+
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# Tests and local tooling
+.tests/
+tests/
+.coverage
+htmlcov/
+
+# Data and outputs not needed at build time
+base_dados/
+cache/
+logs/
+
+# Parquet will be mounted as a volume at runtime
+# Ignore local data during build to keep image small
+Dados_integrados/
+dados_integrados/
+
+# Docs build output
+site/
+docs/site/

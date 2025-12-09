@@ -1,0 +1,117 @@
+# Gitignore - Projeto TechDengue
+
+# Arquivos de Dados Sensíveis
+*.xlsx
+*.xls
+*.csv
+*.db
+*.sqlite
+*.sql
+
+# Credenciais e Configurações
+.env
+.env.local
+config.ini
+secrets.json
+credentials.json
+
+# Outputs e Relatórios
+relatorio_executivo.txt
+analise_bases_dados.txt
+*.log
+
+# Visualizações e Gráficos Gerados
+visualizacoes/
+graficos/
+outputs/
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.svg
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Modelos Treinados
+models/
+*.pkl
+*.joblib
+*.h5
+*.model
+
+# Cache
+.cache/
+*.cache
+
+# Temporários
+tmp/
+temp/
+*.tmp
+
+# Exceções (manter no repositório)
+!README.md
+!RESUMO_ANALISE_DADOS.md
+!GUIA_NAVEGACAO.md
+!requirements.txt
+!.gitignore
+!*.py
+!base_dados/dados_techdengue/guia-banco-gis.md
+
+# Subpasta duplicada do projeto
+banco-dados-techdengue/
+
+# Diretórios de dados (muito grandes)
+base_dados/
+dados_integrados/
+data_lake/
+partitions/
+cache/
+logs/
+
+# Ambiente virtual
+venv/
+.venv/
+
+# Windsurf
+.windsurf/
+
+# .env de produção
+.env.production
+
+# IMPORTANTE: Nunca commitar dados reais ou credenciais!
+# Usar dados de exemplo/mock para testes em repositórios públicos

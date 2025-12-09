@@ -1,0 +1,501 @@
+/* ==========================================================================
+   VISUAL UPGRADE v5.0.0 - MUDANÇAS VISUAIS REAIS
+   Melhorias visuais significativas usando Design System v5.0.0
+   ========================================================================== */
+
+/* ============================================================================
+   1. CARDS MODERNOS COM GRADIENTES E SOMBRAS
+   ============================================================================ */
+
+.metric-card,
+[class*="metric-card"] {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+    border-radius: 16px !important;
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.08),
+        0 2px 4px rgba(0, 0, 0, 0.04) !important;
+    border: 1px solid rgba(31, 119, 180, 0.1) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    padding: 1.5rem !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #1f77b4 0%, #28a745 50%, #17a2b8 100%);
+    opacity: 0.8;
+}
+
+.metric-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 
+        0 12px 24px rgba(0, 0, 0, 0.12),
+        0 4px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Ícones dos cards maiores e coloridos */
+.metric-card-icon,
+[class*="metric-card"] > div:first-child {
+    font-size: 3rem !important;
+    margin-bottom: 1rem !important;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Valores dos cards maiores e mais bold */
+.metric-card-value,
+[class*="metric-card-value"] {
+    font-size: 2.5rem !important;
+    font-weight: 800 !important;
+    background: linear-gradient(135deg, #1f77b4, #17a2b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem !important;
+}
+
+/* Labels mais legíveis */
+.metric-card-label,
+[class*="metric-card-label"] {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: #4b5563 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ============================================================================
+   2. BOTÕES MODERNOS
+   ============================================================================ */
+
+.stButton > button,
+button[kind="primary"],
+button[kind="secondary"] {
+    background: linear-gradient(135deg, #1f77b4 0%, #155a8a 100%) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 0.75rem 2rem !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    box-shadow: 0 4px 12px rgba(31, 119, 180, 0.3) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
+}
+
+.stButton > button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(31, 119, 180, 0.4) !important;
+}
+
+.stButton > button:active {
+    transform: translateY(0) !important;
+}
+
+/* ============================================================================
+   3. HEADER MODERNO
+   ============================================================================ */
+
+[data-testid="stHeader"] {
+    background: linear-gradient(135deg, #1f77b4 0%, #28a745 50%, #17a2b8 100%) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Título principal maior e mais impactante */
+h1, .main h1 {
+    font-size: 3rem !important;
+    font-weight: 800 !important;
+    background: linear-gradient(135deg, #1f77b4, #28a745, #17a2b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem !important;
+    line-height: 1.2 !important;
+}
+
+h2, .main h2 {
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    color: #1f2937 !important;
+    margin: 2rem 0 1rem 0 !important;
+    border-left: 4px solid #1f77b4;
+    padding-left: 1rem;
+}
+
+h3, .main h3 {
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+    color: #374151 !important;
+    margin: 1.5rem 0 1rem 0 !important;
+}
+
+/* ============================================================================
+   4. SIDEBAR MODERNA
+   ============================================================================ */
+
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #1f77b4 0%, #155a8a 100%) !important;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-testid="stSidebar"] * {
+    color: white !important;
+}
+
+[data-testid="stSidebar"] .stMarkdown {
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Links da sidebar */
+[data-testid="stSidebar"] a {
+    color: white !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    padding: 0.75rem 1rem !important;
+    border-radius: 8px !important;
+    margin: 0.25rem 0 !important;
+    display: block !important;
+    transition: all 0.3s ease !important;
+}
+
+[data-testid="stSidebar"] a:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    transform: translateX(4px) !important;
+}
+
+/* ============================================================================
+   5. INPUTS E SELECTS MODERNOS
+   ============================================================================ */
+
+.stSelectbox > div > div,
+.stTextInput > div > div > input,
+.stNumberInput > div > div > input {
+    border-radius: 12px !important;
+    border: 2px solid #e5e7eb !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 1rem !important;
+    transition: all 0.3s ease !important;
+    background: white !important;
+}
+
+.stSelectbox > div > div:focus-within,
+.stTextInput > div > div > input:focus,
+.stNumberInput > div > div > input:focus {
+    border-color: #1f77b4 !important;
+    box-shadow: 0 0 0 3px rgba(31, 119, 180, 0.1) !important;
+    outline: none !important;
+}
+
+/* ============================================================================
+   6. DATAFRAMES E TABELAS
+   ============================================================================ */
+
+[data-testid="stDataFrame"] {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid #e5e7eb !important;
+}
+
+[data-testid="stDataFrame"] table {
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+}
+
+[data-testid="stDataFrame"] thead {
+    background: linear-gradient(135deg, #1f77b4, #155a8a) !important;
+}
+
+[data-testid="stDataFrame"] thead th {
+    color: white !important;
+    font-weight: 600 !important;
+    padding: 1rem !important;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+}
+
+[data-testid="stDataFrame"] tbody tr {
+    transition: all 0.2s ease !important;
+}
+
+[data-testid="stDataFrame"] tbody tr:hover {
+    background: #f3f4f6 !important;
+    transform: scale(1.01);
+}
+
+[data-testid="stDataFrame"] tbody td {
+    padding: 0.875rem 1rem !important;
+    border-bottom: 1px solid #e5e7eb !important;
+}
+
+/* ============================================================================
+   7. ALERTAS E MENSAGENS
+   ============================================================================ */
+
+.stAlert {
+    border-radius: 12px !important;
+    border: none !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    padding: 1rem 1.5rem !important;
+    margin: 1rem 0 !important;
+}
+
+.stSuccess {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%) !important;
+    border-left: 4px solid #10b981 !important;
+}
+
+.stWarning {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%) !important;
+    border-left: 4px solid #f59e0b !important;
+}
+
+.stError {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%) !important;
+    border-left: 4px solid #ef4444 !important;
+}
+
+.stInfo {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%) !important;
+    border-left: 4px solid #3b82f6 !important;
+}
+
+/* ============================================================================
+   8. GRÁFICOS PLOTLY
+   ============================================================================ */
+
+.js-plotly-plot {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid #e5e7eb !important;
+    background: white !important;
+    padding: 1rem !important;
+}
+
+/* ============================================================================
+   9. PROGRESS BARS
+   ============================================================================ */
+
+.stProgress > div > div {
+    background: linear-gradient(90deg, #1f77b4 0%, #28a745 50%, #17a2b8 100%) !important;
+    height: 12px !important;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 8px rgba(31, 119, 180, 0.3) !important;
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+.stProgress > div {
+    background: #e5e7eb !important;
+    border-radius: 6px !important;
+    overflow: hidden !important;
+}
+
+/* ============================================================================
+   10. BADGES E TAGS
+   ============================================================================ */
+
+.badge,
+[class*="badge"] {
+    display: inline-block;
+    padding: 0.375rem 0.875rem !important;
+    border-radius: 20px !important;
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.badge.success {
+    background: linear-gradient(135deg, #10b981, #059669) !important;
+    color: white !important;
+}
+
+.badge.warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+    color: white !important;
+}
+
+.badge.error {
+    background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+    color: white !important;
+}
+
+/* ============================================================================
+   11. ESPAÇAMENTO E RITMO VISUAL
+   ============================================================================ */
+
+.main > div {
+    padding: 2rem 3rem !important;
+}
+
+.element-container {
+    margin-bottom: 1.5rem !important;
+}
+
+.row-widget {
+    margin-bottom: 2rem !important;
+}
+
+/* ============================================================================
+   12. ANIMAÇÕES GLOBAIS
+   ============================================================================ */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.main > div > div {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* ============================================================================
+   13. SCROLLBAR MODERNA
+   ============================================================================ */
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #1f77b4, #155a8a);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #155a8a, #1f77b4);
+}
+
+/* ============================================================================
+   14. TOOLTIPS
+   ============================================================================ */
+
+[data-testid="stTooltipHoverTarget"] {
+    background: rgba(31, 119, 180, 0.1) !important;
+    border-radius: 8px !important;
+    padding: 0.5rem !important;
+    transition: all 0.2s ease !important;
+}
+
+[data-testid="stTooltipHoverTarget"]:hover {
+    background: rgba(31, 119, 180, 0.2) !important;
+}
+
+/* ============================================================================
+   15. CONTAINERS E EXPANDERS
+   ============================================================================ */
+
+.stExpander {
+    border-radius: 12px !important;
+    border: 2px solid #e5e7eb !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    margin: 1rem 0 !important;
+    overflow: hidden !important;
+}
+
+.stExpander:hover {
+    border-color: #1f77b4 !important;
+    box-shadow: 0 4px 12px rgba(31, 119, 180, 0.15) !important;
+}
+
+/* ============================================================================
+   16. RESPONSIVE ENHANCEMENTS
+   ============================================================================ */
+
+@media (max-width: 768px) {
+    h1, .main h1 {
+        font-size: 2rem !important;
+    }
+    
+    h2, .main h2 {
+        font-size: 1.5rem !important;
+    }
+    
+    .metric-card-value {
+        font-size: 2rem !important;
+    }
+    
+    .main > div {
+        padding: 1rem !important;
+    }
+}
+
+/* ============================================================================
+   17. FOOTER
+   ============================================================================ */
+
+footer {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e5e7eb 100%) !important;
+    padding: 2rem !important;
+    border-top: 3px solid #1f77b4 !important;
+    margin-top: 4rem !important;
+    border-radius: 12px 12px 0 0 !important;
+}
+
+/* ============================================================================
+   18. PERFORMANCE - GPU ACCELERATION
+   ============================================================================ */
+
+.metric-card,
+.stButton > button,
+[data-testid="stDataFrame"] tbody tr {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* ============================================================================
+   19. DARK MODE SUPPORT (FUTURO)
+   ============================================================================ */
+
+@media (prefers-color-scheme: dark) {
+    /* Preparado para dark mode futuro */
+}
+
+/* ============================================================================
+   20. ACESSIBILIDADE
+   ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ============================================================================
+   FIM - VISUAL UPGRADE v5.0.0
+   ============================================================================ */

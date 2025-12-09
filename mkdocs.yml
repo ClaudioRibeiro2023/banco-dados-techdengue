@@ -1,0 +1,22 @@
+site_name: TechDengue API Docs
+site_description: Documentação da API TechDengue
+site_url: https://example.netlify.app
+repo_url: https://github.com/your-org/banco-dados-techdengue
+nav:
+  - Início: index.md
+  - Guias:
+      - Dicionário de Dados: guides/API_DATA_DICTIONARY.md
+theme:
+  name: material
+  features:
+    - content.code.copy
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - tables
+  - attr_list
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/your-org/banco-dados-techdengue

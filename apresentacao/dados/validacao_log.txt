@@ -1,0 +1,16 @@
+================================================================================
+RELATÓRIO DE VALIDAÇÃO - CISARP
+================================================================================
+
+Data: 01/11/2025 12:14:54
+Total de atividades CISARP: 108
+
+SCORE FINAL DE QUALIDADE: 60.0%
+
+Detalhamento:
+  - Completude: 75.0% (peso 40%)
+  - Correlação IBGE: 0.0% (peso 30%)
+  - Consistência: 100.0% (peso 20%)
+  - Unicidade: 100.0% (peso 10%)
+
+Decisão: GO COM RESSALVAS

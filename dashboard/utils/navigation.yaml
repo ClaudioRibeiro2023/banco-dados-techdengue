@@ -1,0 +1,48 @@
+# IA de Navegação (Fase 3)
+# Define seções e páginas do dashboard
+
+sections:
+  - id: home
+    title: "🏠 Home"
+    description: "Visão executiva e KPIs"
+    pages:
+      - id: overview
+        title: "Visão Geral"
+        path: "/"
+  - id: qualidade
+    title: "📊 Qualidade de Dados"
+    description: "Validações, score e auditorias"
+    pages:
+      - id: score
+        title: "Score & Checks"
+        path: "/qualidade"
+  - id: mega_tabela
+    title: "🗄️ Mega Tabela"
+    description: "Exploração analítica e filtros"
+    pages:
+      - id: explorer
+        title: "Explorador"
+        path: "/mega"
+  - id: analises
+    title: "📈 Análises"
+    description: "Top performers, evolução temporal, depósitos"
+    pages:
+      - id: evolucao
+        title: "Evolução Temporal"
+        path: "/analises/evolucao"
+      - id: ranking
+        title: "Top Performers"
+        path: "/analises/ranking"
+      - id: depositos
+        title: "Depósitos"
+        path: "/analises/depositos"
+  - id: sistema
+    title: "⚙️ Sistema"
+    description: "Status, configurações e versões"
+    pages:
+      - id: status
+        title: "Status"
+        path: "/sistema/status"
+      - id: configuracoes
+        title: "Configurações"
+        path: "/sistema/config"

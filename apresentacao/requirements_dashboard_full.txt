@@ -1,0 +1,40 @@
+# ========================================
+# DASHBOARD CISARP - Dependências Completas
+# Baseado em arquitetura enterprise SIVEPI
+# ========================================
+
+# ====== CORE DASHBOARD ======
+streamlit==1.28.0
+streamlit-aggrid==0.3.4          # Tabelas avançadas interativas
+streamlit-extras==0.3.5          # Componentes extras
+
+# ====== VISUALIZAÇÃO ======
+plotly==5.17.0                   # Gráficos interativos
+kaleido==0.2.1                   # Export de gráficos como imagem
+
+# ====== DADOS E ANÁLISE ======
+pandas==2.1.0                    # Manipulação de dados
+numpy==1.24.3                    # Computação numérica
+openpyxl==3.1.2                  # Leitura de Excel
+scipy==1.11.2                    # Análises estatísticas
+
+# ====== CACHE E PERFORMANCE ======
+diskcache==5.6.3                 # Cache em disco persistente
+# redis==5.0.0                   # Cache distribuído (opcional, descomente se usar)
+
+# ====== VALIDAÇÃO E CONFIGURAÇÃO ======
+pydantic==2.4.0                  # Validação de dados robusta
+pydantic-settings==2.0.3         # Configurações tipadas
+python-dotenv==1.0.0             # Variáveis de ambiente
+
+# ====== LOGGING E MONITORAMENTO ======
+loguru==0.7.2                    # Logging estruturado avançado
+
+# ====== TESTES (Dev) ======
+pytest==7.4.0                    # Framework de testes
+pytest-cov==4.1.0                # Cobertura de código
+pytest-asyncio==0.21.1           # Testes assíncronos
+
+# ====== UTILITÁRIOS ======
+python-dateutil==2.8.2           # Manipulação de datas
+pytz==2023.3                     # Timezones

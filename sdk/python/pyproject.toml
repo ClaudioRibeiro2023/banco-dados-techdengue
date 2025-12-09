@@ -1,0 +1,51 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "techdengue"
+version = "1.0.0"
+description = "SDK Python oficial para a API TechDengue - Dados de dengue de Minas Gerais"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "TechDengue", email = "contato@techdengue.com.br" }
+]
+keywords = ["dengue", "saude", "epidemiologia", "minas-gerais", "api"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Healthcare Industry",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+]
+
+dependencies = [
+    "httpx>=0.25.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/techdengue/techdengue-sdk-python"
+Documentation = "https://docs.techdengue.com.br/sdk/python"
+Repository = "https://github.com/techdengue/techdengue-sdk-python"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/techdengue",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["techdengue"]

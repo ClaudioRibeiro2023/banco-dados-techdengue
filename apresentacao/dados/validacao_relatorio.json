@@ -1,0 +1,23 @@
+{
+  "data_validacao": "2025-11-01T12:14:54.432051",
+  "total_atividades_cisarp": 108,
+  "score_qualidade": {
+    "final": 60.0,
+    "completude": 75.0,
+    "correlacao": 0,
+    "consistencia": 100.0,
+    "unicidade": 100.0
+  },
+  "estatisticas": {
+    "pois_totais": 13584,
+    "hectares_totais": 9440.369999999999,
+    "devolutivas_totais": 0
+  },
+  "decisao_go_no_go": false,
+  "criterios": {
+    "Score de qualidade ≥ 85%": false,
+    "Missing em campos críticos < 5%": false,
+    "Correlação IBGE ≥ 95%": false,
+    "Registros CISARP > 0": true
+  }
+}

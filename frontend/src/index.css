@@ -1,0 +1,5 @@
+/**
+ * TechDengue Dashboard - Main Styles
+ * Import Design System tokens and Tailwind
+ */
+@import './styles/tokens.css';

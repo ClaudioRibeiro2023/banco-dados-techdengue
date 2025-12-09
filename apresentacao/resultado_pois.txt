@@ -1,0 +1,187 @@
+================================================================================
+ANÁLISE DETALHADA DE POIs
+================================================================================
+
+1. POIs POR CONTRATANTE
+--------------------------------------------------------------------------------
+Total de contratantes: 22
+
+TOP 20 CONTRATANTES:
+ 1. Verba Direta                                   130,867 POIs
+ 2. ICISMEP - ZURS BHTE                             23,120 POIs
+ 3. ICISMEP - ZURS DIVINÓPOLIS                      20,894 POIs
+ 4. CISMAS - ZURS POUSO ALEGRE                      17,870 POIs
+ 5. CISARP - ZURS MONTES CLAROS                     14,090 POIs
+ 6. CISMISEL - ZURS SETE LAGOAS                     12,970 POIs
+ 7. CISALP - ZURS UBERABA                            8,897 POIs
+ 8. AMVAP - ZURS UBERLANDIA                          8,720 POIs
+ 9. CISALP - ZURS PATOS DE MINAS                     8,392 POIs
+10. CONSAUDE - ZURS CEL FABRICIANO                   8,062 POIs
+11. CISCAPARAO - ZURS MANHUAÇU                       7,876 POIs
+12. CISDOCE - ZURS GV                                6,871 POIs
+13. CISAJE - ZURS DIAMANTINA                         6,723 POIs
+14. CISVER - ZURS SÃO JOÃO DEL REI                   5,428 POIs
+15. CISMEPI - ZURS ITABIRA                           5,422 POIs
+16. CISAMSF - ZURS JANUÁRIA                          5,202 POIs
+17. SIMSAUDE - ZURS UBÁ                              5,195 POIs
+18. CISUM - ZURS LEOPOLDINA                          4,969 POIs
+19. CINSC - ZURS PASSOS                              4,414 POIs
+20. CIMMESF - ZURS PIRAPORA                          4,329 POIs
+
+CISARP encontrado:
+  CISARP - ZURS MONTES CLAROS: 14,090 POIs
+
+2. POIs POR GRUPO/CATEGORIA
+--------------------------------------------------------------------------------
+Total de grupos: 8
+
+C - Depósitos fixos                                           111,787 ( 35.3%)
+D - Depósitos passíveis de remoção                             94,247 ( 29.8%)
+A - Armazenamento de água                                      76,948 ( 24.3%)
+Outros                                                         31,611 ( 10.0%)
+B - Pequenos depósitos móveis                                     415 (  0.1%)
+C - Depositos fixos                                               213 (  0.1%)
+D - Depositos passiveis de remocao                                159 (  0.1%)
+A - Armazenamento de agua                                          74 (  0.0%)
+
+3. POIs POR AGRUPAMENTO (Top 30)
+--------------------------------------------------------------------------------
+C - Piscinas e fontes                                         105,811 ( 33.4%)
+D - Lixo (plásticos, latas, sucatas e entulhos)                82,219 ( 26.0%)
+A - Tonel, Barril, Tambor                                      45,658 ( 14.4%)
+O - Outros (laje com acúmulo)                                  31,769 ( 10.0%)
+A - Caixa de água elevada                                      30,547 (  9.7%)
+D - Pneus                                                      12,360 (  3.9%)
+C - Máquinas/Equip em pátios                                    4,668 (  1.5%)
+C - Piscina desativada/abandonada                               1,709 (  0.5%)
+A - Poço / Cacimba                                              1,117 (  0.4%)
+B - Balde / Frasco                                                415 (  0.1%)
+C - Tanques (pátios construção e mecanicas)                       199 (  0.1%)
+O - Outros                                                         10 (  0.0%)
+O - Caixa de água elevada                                           1 (  0.0%)
+
+4. DISTRIBUIÇÃO TEMPORAL
+--------------------------------------------------------------------------------
+POIs por ano de criação:
+
+5. POIs POR MUNICÍPIO (Top 20)
+--------------------------------------------------------------------------------
+Uberlândia                          (Cód: 3170206)   18,443 POIs
+Uberaba                             (Cód: 3170107)    9,171 POIs
+Montes Claros                       (Cód: 3143302)    6,524 POIs
+Betim                               (Cód: 3106705)    6,049 POIs
+Contagem                            (Cód: 3118601)    5,248 POIs
+Ribeirão das Neves                  (Cód: 3154606)    4,227 POIs
+Santa Luzia                         (Cód: 3157807)    3,965 POIs
+Governador Valadares                (Cód: 3127701)    3,797 POIs
+Poços de Caldas                     (Cód: 3151800)    3,655 POIs
+Sete Lagoas                         (Cód: 3167202)    3,553 POIs
+Mariana                             (Cód: 3140001)    3,530 POIs
+Sabará                              (Cód: 3156700)    3,522 POIs
+Ituiutaba                           (Cód: 3134202)    3,153 POIs
+João Monlevade                      (Cód: 3136207)    2,877 POIs
+Ouro Preto                          (Cód: 3146107)    2,603 POIs
+Ibirité                             (Cód: 3129806)    2,533 POIs
+Itabirito                           (Cód: 3131901)    2,473 POIs
+Três Corações                       (Cód: 3169307)    2,468 POIs
+Igarapé                             (Cód: 3130101)    2,445 POIs
+Passos                              (Cód: 3147907)    2,429 POIs
+
+6. TRATAMENTOS APLICADOS
+--------------------------------------------------------------------------------
+Distribuição de tratamentos:
+  Tratamento 0: 316,381 POIs
+  Tratamento 2: 29 POIs
+  Tratamento 1: 18 POIs
+  Tratamento 5: 14 POIs
+  Tratamento 4: 13 POIs
+  Tratamento 3: 13 POIs
+  Tratamento 6: 6 POIs
+  Tratamento 20: 1 POIs
+  Tratamento 25: 1 POIs
+  Tratamento 100: 1 POIs
+  Tratamento 100.3: 1 POIs
+  Tratamento 0.5: 1 POIs
+  Tratamento 2.5: 1 POIs
+  Tratamento 5.6: 1 POIs
+  Tratamento 8: 1 POIs
+  Tratamento 10: 1 POIs
+  Tratamento 15: 1 POIs
+
+7. POIs POR REGIÃO
+--------------------------------------------------------------------------------
+Distribuição por Região Geográfica Intermediária:
+Belo Horizonte                             52,991 ( 16.7%)
+Uberlândia                                 23,677 (  7.5%)
+Divinópolis                                13,930 (  4.4%)
+Montes Claros                              13,488 (  4.3%)
+Uberaba                                    11,994 (  3.8%)
+Sete Lagoas                                11,725 (  3.7%)
+Pouso Alegre                               11,315 (  3.6%)
+Patos de Minas                             10,921 (  3.5%)
+Santa Bárbara - Ouro Preto                 10,039 (  3.2%)
+Ipatinga                                    7,191 (  2.3%)
+Governador Valadares                        7,154 (  2.3%)
+Poços de Caldas                             6,137 (  1.9%)
+Manhuaçu                                    5,944 (  1.9%)
+Dores do Indaiá                             5,794 (  1.8%)
+Formiga                                     5,535 (  1.7%)
+São João del Rei                            5,201 (  1.6%)
+Passos                                      4,919 (  1.6%)
+Itajubá                                     4,595 (  1.5%)
+Oliveira                                    4,485 (  1.4%)
+João Monlevade                              4,461 (  1.4%)
+Pirapora                                    4,329 (  1.4%)
+Pará de Minas                               4,328 (  1.4%)
+Araxá                                       4,148 (  1.3%)
+Ituiutaba                                   4,086 (  1.3%)
+Salinas                                     4,080 (  1.3%)
+Curvelo                                     3,934 (  1.2%)
+Janaúba                                     3,827 (  1.2%)
+Ubá                                         3,802 (  1.2%)
+Caratinga                                   3,717 (  1.2%)
+Muriaé                                      3,661 (  1.2%)
+Cataguases                                  3,573 (  1.1%)
+Guaxupé                                     3,572 (  1.1%)
+Campo Belo                                  3,478 (  1.1%)
+Frutal                                      3,247 (  1.0%)
+Guanhães                                    3,181 (  1.0%)
+Patrocínio                                  2,831 (  0.9%)
+São Sebastião do Paraíso                    2,771 (  0.9%)
+Carangola                                   2,753 (  0.9%)
+Diamantina                                  2,634 (  0.8%)
+Januária                                    2,598 (  0.8%)
+Três Corações                               2,468 (  0.8%)
+Capelinha                                   2,344 (  0.7%)
+Alfenas                                     2,071 (  0.7%)
+Espinosa                                    1,904 (  0.6%)
+Monte Carmelo                               1,737 (  0.5%)
+Abaeté                                      1,556 (  0.5%)
+Lavras                                      1,470 (  0.5%)
+Iturama                                     1,399 (  0.4%)
+Além Paraíba                                1,396 (  0.4%)
+Barbacena                                   1,254 (  0.4%)
+Araçuaí                                     1,049 (  0.3%)
+Mantena                                     1,017 (  0.3%)
+São Francisco                               1,002 (  0.3%)
+Aimorés - Resplendor                          891 (  0.3%)
+Piumhi                                        849 (  0.3%)
+Itabira                                       715 (  0.2%)
+Unaí                                          506 (  0.2%)
+Conselheiro Lafaiete                          417 (  0.1%)
+Viçosa                                        378 (  0.1%)
+Pedra Azul                                     12 (  0.0%)
+
+8. COMPLETUDE DOS DADOS
+--------------------------------------------------------------------------------
+contratante           315,553/316,484 ( 99.7%) | Nulos: 931
+nm_mun                316,481/316,484 (100.0%) | Nulos: 3
+grupo                 315,454/316,484 ( 99.7%) | Nulos: 1,030
+agrupament            316,483/316,484 (100.0%) | Nulos: 1
+lat                   316,483/316,484 (100.0%) | Nulos: 1
+long                  316,483/316,484 (100.0%) | Nulos: 1
+geom                  316,483/316,484 (100.0%) | Nulos: 1
+data_criacao                0/316,484 (  0.0%) | Nulos: 316,484
+bairro                315,262/316,484 ( 99.6%) | Nulos: 1,222
+
+================================================================================

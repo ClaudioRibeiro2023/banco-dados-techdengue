@@ -1,0 +1,40 @@
+# TechDengue Dashboard - Dockerfile
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
+
+# Dependências de sistema
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Instalar dependências do dashboard
+COPY dashboard/requirements.txt ./dashboard_requirements.txt
+RUN pip install --upgrade pip && pip install -r dashboard_requirements.txt
+
+# Dependências adicionais necessárias
+RUN pip install loguru python-dotenv
+
+# Código-fonte - estrutura compatível com o app.py
+COPY dashboard ./dashboard
+
+# Criar diretórios para montagem de volumes (serão sobrescritos pelos volumes)
+RUN mkdir -p /app/data_lake/gold /app/data_lake/metadata /app/dados_integrados
+
+# Configuração Streamlit
+RUN mkdir -p /root/.streamlit && \
+    echo '[server]' > /root/.streamlit/config.toml && \
+    echo 'headless = true' >> /root/.streamlit/config.toml && \
+    echo 'enableCORS = false' >> /root/.streamlit/config.toml && \
+    echo 'enableXsrfProtection = false' >> /root/.streamlit/config.toml && \
+    echo '[browser]' >> /root/.streamlit/config.toml && \
+    echo 'gatherUsageStats = false' >> /root/.streamlit/config.toml
+
+EXPOSE 8501
+
+# Rodar como root para simplificar acesso aos volumes
+CMD ["python", "-m", "streamlit", "run", "dashboard/app.py", "--server.port=8501", "--server.address=0.0.0.0"]

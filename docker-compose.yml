@@ -1,0 +1,93 @@
+services:
+  api:
+    build: .
+    image: techdengue-api:latest
+    container_name: techdengue-api
+    ports:
+      - "4010:8000"
+    environment:
+      - LOG_LEVEL=INFO
+      - CACHE_TTL_SECONDS=3600
+      - CORS_ALLOW_ORIGINS=*
+      - REDIS_URL=redis://redis:6379/0
+      # Configure o banco GIS (PostgreSQL RDS) via variáveis abaixo
+      - GIS_DB_HOST=${GIS_DB_HOST:-localhost}
+      - GIS_DB_PORT=${GIS_DB_PORT:-5432}
+      - GIS_DB_NAME=${GIS_DB_NAME:-postgres}
+      - GIS_DB_USERNAME=${GIS_DB_USERNAME:-postgres}
+      - GIS_DB_PASSWORD=${GIS_DB_PASSWORD:-}
+      - GIS_DB_SSL_MODE=${GIS_DB_SSL_MODE:-require}
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./dados_integrados:/app/dados_integrados:ro
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8000/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped
+    networks:
+      - techdengue-network
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    image: techdengue-dashboard:latest
+    container_name: techdengue-dashboard
+    ports:
+      - "4011:8501"
+    environment:
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+    volumes:
+      - ./data_lake:/app/data_lake:ro
+      - ./dados_integrados:/app/dados_integrados:ro
+    depends_on:
+      - api
+    restart: unless-stopped
+    networks:
+      - techdengue-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: http://localhost:4010
+    image: techdengue-frontend:latest
+    container_name: techdengue-frontend
+    ports:
+      - "4012:80"
+    depends_on:
+      - api
+    restart: unless-stopped
+    networks:
+      - techdengue-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: techdengue-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - techdengue-network
+
+networks:
+  techdengue-network:
+    driver: bridge
+
+volumes:
+  redis_data:
