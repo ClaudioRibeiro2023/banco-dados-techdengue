@@ -1,6 +1,6 @@
 [build]
   base = "frontend"
-  command = "npm ci && npm run build"
+  command = "npm ci --include=dev && npm run build"
   publish = "dist"
 
 [build.environment]
@@ -29,12 +29,12 @@
 
 # Contextos de deploy
 [context.production]
-  command = "npm ci && npm run build"
+  command = "npm ci --include=dev && npm run build"
   [context.production.environment]
     NODE_ENV = "production"
 
 [context.deploy-preview]
-  command = "npm ci && npm run build"
+  command = "npm ci --include=dev && npm run build"
 
 [context.branch-deploy]
-  command = "npm ci && npm run build"
+  command = "npm ci --include=dev && npm run build"
