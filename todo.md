@@ -125,17 +125,21 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
 
 > **Objetivo:** Aumentar cobertura de testes e garantir qualidade.
 
-- [ ] [P0] **2.1** Adicionar pytest-cov ao `requirements.txt`
+- [x] [P0] **2.1** Adicionar pytest-cov ao `requirements.txt`
+  - ✅ Concluído em 2025-12-10
 
-- [ ] [P0] **2.2** Configurar coverage no CI (`.github/workflows/deploy.yml`):
+- [x] [P0] **2.2** Configurar coverage no CI (`.github/workflows/deploy.yml`):
+  - ✅ Concluído em 2025-12-10 (min 50%)
   ```yaml
   - name: Run tests with coverage
     run: pytest tests/ -v --cov=src --cov-report=xml
   ```
 
-- [ ] [P1] **2.3** Criar `tests/services/__init__.py`
+- [x] [P1] **2.3** Criar `tests/services/__init__.py`
+  - ✅ Concluído em 2025-12-10
 
-- [ ] [P1] **2.4** Criar `tests/services/test_weather.py`:
+- [x] [P1] **2.4** Criar `tests/services/test_weather.py`:
+  - ✅ Concluído em 2025-12-10 (20 testes, 81% coverage)
   - Testar `WeatherService._normalize_cidade()`
   - Testar `WeatherService._calcular_favorabilidade()`
   - Testar `WeatherService.analyze_dengue_risk()`
@@ -261,11 +265,11 @@ Use este arquivo como checklist vivo. Adicione notas rápidas abaixo dos itens c
 |------|-------|------------|---|
 | 0 | 6 | 4 | 67% |
 | 1 | 11 | 8 | 73% |
-| 2 | 9 | 0 | 0% |
+| 2 | 9 | 4 | 44% |
 | 3 | 4 | 0 | 0% |
 | 4 | 5 | 0 | 0% |
 | 5 | 7 | 0 | 0% |
-| **Total** | **42** | **12** | **29%** |
+| **Total** | **42** | **16** | **38%** |
 
 ---
 
