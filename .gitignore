@@ -101,8 +101,11 @@ banco-dados-techdengue/
 
 # Diretórios de dados (muito grandes)
 base_dados/
-dados_integrados/
 data_lake/
+
+# Dados integrados - ignorar JSON, manter Parquet
+dados_integrados/*.json
+!dados_integrados/*.parquet
 partitions/
 cache/
 logs/
