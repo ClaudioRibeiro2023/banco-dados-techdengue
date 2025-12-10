@@ -75,33 +75,41 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
 
 > **Objetivo:** Modularizar `app.py` e estabelecer estrutura de routers.
 
-- [ ] [P0] **1.1** Criar `src/api/routers/__init__.py`
+- [x] [P0] **1.1** Criar `src/api/routers/__init__.py`
+  - ✅ Concluído em 2025-12-10
 
-- [ ] [P0] **1.2** Criar `src/api/routers/health.py`:
+- [x] [P0] **1.2** Criar `src/api/routers/health.py`:
+  - ✅ Concluído em 2025-12-10
   - Mover endpoints: `/health`, `/monitor`, `/quality`, `/datasets`
   - Ver seção 4.1 da Proposta
 
-- [ ] [P0] **1.3** Criar `src/api/routers/facts.py`:
+- [x] [P0] **1.3** Criar `src/api/routers/facts.py`:
+  - ✅ Concluído em 2025-12-10
   - Mover endpoints: `/facts`, `/facts/summary`, `/facts/export`
   - Ver seção 4.1 da Proposta
 
-- [ ] [P1] **1.4** Criar `src/api/routers/weather.py`:
+- [x] [P1] **1.4** Criar `src/api/routers/weather.py`:
+  - ✅ Concluído em 2025-12-10
   - Mover endpoints: `/api/v1/weather/*`
   - Ver seção 4.1 da Proposta
 
-- [ ] [P1] **1.5** Criar `src/api/routers/risk.py`:
+- [x] [P1] **1.5** Criar `src/api/routers/weather.py` (inclui risk):
+  - ✅ Concluído em 2025-12-10
   - Mover endpoints: `/api/v1/risk/*`
   - Ver seção 4.1 da Proposta
 
-- [ ] [P1] **1.6** Criar `src/api/routers/gis.py`:
+- [x] [P1] **1.6** Criar `src/api/routers/gis.py`:
+  - ✅ Concluído em 2025-12-10
   - Mover endpoints: `/gis/*`
   - Ver seção 4.1 da Proposta
 
-- [ ] [P2] **1.7** Criar `src/api/routers/admin.py`:
+- [x] [P2] **1.7** Criar `src/api/routers/admin.py`:
+  - ✅ Concluído em 2025-12-10
   - Mover endpoints: `/api/v1/admin/*`, `/api/v1/audit/*`
   - Ver seção 4.1 da Proposta
 
-- [ ] [P1] **1.8** Criar `src/api/dependencies.py`:
+- [x] [P1] **1.8** Criar `src/api/dependencies.py`:
+  - ✅ Concluído em 2025-12-10
   - Extrair dependências comuns (cache, db, rate limiter)
 
 - [ ] [P2] **1.9** Mover import de `unicodedata` para topo em `weather.py`
@@ -252,12 +260,12 @@ Use este arquivo como checklist vivo. Adicione notas rápidas abaixo dos itens c
 | Fase | Total | Concluídos | % |
 |------|-------|------------|---|
 | 0 | 6 | 4 | 67% |
-| 1 | 11 | 0 | 0% |
+| 1 | 11 | 8 | 73% |
 | 2 | 9 | 0 | 0% |
 | 3 | 4 | 0 | 0% |
 | 4 | 5 | 0 | 0% |
 | 5 | 7 | 0 | 0% |
-| **Total** | **42** | **4** | **10%** |
+| **Total** | **42** | **12** | **29%** |
 
 ---
 
