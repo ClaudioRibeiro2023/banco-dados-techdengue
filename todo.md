@@ -154,7 +154,8 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
   - Testar filtros
   - Testar exports
 
-- [ ] [P1] **2.7** Expandir testes para `/weather/*`:
+- [x] [P1] **2.7** Expandir testes para `/weather/*`:
+  - ✅ 20 testes passando (92% cobertura)
   - Testar normalização de cidades
   - Testar mock weather data
 
@@ -197,7 +198,8 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
   - ✅ Concluído em 2025-12-10
   - Garantir que exclui: `__pycache__`, `.git`, `venv/`, `node_modules/`
 
-- [ ] [P2] **3.4** Configurar hot-reload para desenvolvimento:
+- [x] [P2] **3.4** Configurar hot-reload para desenvolvimento:
+  - ✅ Já documentado no Makefile (`make dev` usa --reload)
   - Documentar comando com `--reload`
 
 ---
@@ -279,11 +281,11 @@ Use este arquivo como checklist vivo. Adicione notas rápidas abaixo dos itens c
 |------|-------|------------|---|
 | 0 | 6 | 4 | 67% |
 | 1 | 11 | 8 | 73% |
-| 2 | 9 | 7 | 78% |
-| 3 | 4 | 3 | 75% |
+| 2 | 9 | 8 | 89% |
+| 3 | 4 | 4 | 100% |
 | 4 | 5 | 2 | 40% |
 | 5 | 7 | 6 | 86% |
-| **Total** | **42** | **30** | **71%** |
+| **Total** | **42** | **32** | **76%** |
 
 ---
 
