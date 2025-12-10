@@ -20,11 +20,13 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
 
 > **Objetivo:** Corrigir problemas críticos e preparar base para melhorias.
 
-- [ ] [P0] **0.1** Ativar Sentry no Railway — adicionar variáveis:
+- [x] [P0] **0.1** Ativar Sentry no Railway — adicionar variáveis:
+  - ✅ Concluído em 2025-12-10
   - `SENTRY_DSN=https://91d9b63a6765b49bfe0efdfcb3a7581f@o4510502722142208.ingest.us.sentry.io/4510508545474560`
   - `SENTRY_ENVIRONMENT=production`
 
-- [ ] [P0] **0.2** Configurar pre-commit hooks — criar `.pre-commit-config.yaml`:
+- [x] [P0] **0.2** Configurar pre-commit hooks — criar `.pre-commit-config.yaml`:
+  - ✅ Concluído em 2025-12-10
   ```yaml
   repos:
     - repo: https://github.com/astral-sh/ruff-pre-commit
@@ -40,7 +42,8 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
   ```
   - Executar: `pip install pre-commit && pre-commit install`
 
-- [ ] [P0] **0.3** Mover scripts `.py` da raiz para `/scripts`:
+- [x] [P0] **0.3** Mover scripts `.py` da raiz para `/scripts`:
+  - ✅ Concluído em 2025-12-10
   - `carregar_base_integrada.py` → `scripts/etl/`
   - `criar_base_integrada.py` → `scripts/etl/`
   - `criar_mega_tabela.py` → `scripts/etl/`
@@ -51,7 +54,8 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
   - `test_dashboard.py` → `tests/`
   - `test_import.py` → `tests/`
 
-- [ ] [P1] **0.4** Remover/consolidar arquivos `.bat`:
+- [x] [P1] **0.4** Remover/consolidar arquivos `.bat`:
+  - ✅ Concluído em 2025-12-10 (movidos para scripts/legacy/)
   - Criar `Makefile` com targets equivalentes
   - Remover: `ATIVAR_DASHBOARD_NOVO.bat`, `RUN_*.bat`, `START_DASHBOARD.bat`
 
@@ -247,13 +251,13 @@ Use este arquivo como checklist vivo. Adicione notas rápidas abaixo dos itens c
 
 | Fase | Total | Concluídos | % |
 |------|-------|------------|---|
-| 0 | 6 | 0 | 0% |
+| 0 | 6 | 4 | 67% |
 | 1 | 11 | 0 | 0% |
 | 2 | 9 | 0 | 0% |
 | 3 | 4 | 0 | 0% |
 | 4 | 5 | 0 | 0% |
 | 5 | 7 | 0 | 0% |
-| **Total** | **42** | **0** | **0%** |
+| **Total** | **42** | **4** | **10%** |
 
 ---
 
