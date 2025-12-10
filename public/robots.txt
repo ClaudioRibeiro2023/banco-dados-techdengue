@@ -1,0 +1,17 @@
+# TechDengue Dashboard - Robots.txt
+
+User-agent: *
+Allow: /
+
+# Disallow login and authenticated pages from being indexed
+Disallow: /login
+Disallow: /dashboard
+Disallow: /mapa
+Disallow: /analise
+Disallow: /atividades
+Disallow: /relatorios
+Disallow: /configuracoes
+Disallow: /api
+
+# Sitemap
+Sitemap: https://techdengue.com/sitemap.xml
