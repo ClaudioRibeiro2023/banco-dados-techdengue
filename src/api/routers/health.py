@@ -8,8 +8,8 @@ from typing import Any, Dict
 
 import httpx
 import pandas as pd
-from fastapi import APIRouter, Request
-from fastapi.responses import JSONResponse
+from fastapi import APIRouter, Request, Response
+from fastapi.responses import JSONResponse, PlainTextResponse
 from loguru import logger
 
 from src.config import Config
@@ -306,3 +306,60 @@ async def system_status(request: Request) -> Any:
             "ai_risk_analysis": True,
         },
     }
+
+
+@router.get("/metrics", tags=["Health"], summary="Métricas Prometheus")
+async def prometheus_metrics() -> Response:
+    """
+    Retorna métricas no formato Prometheus.
+    
+    Métricas disponíveis:
+    - techdengue_cache_hits_total
+    - techdengue_cache_misses_total
+    - techdengue_requests_total
+    - techdengue_datasets_available
+    """
+    from src.core.audit import _audit_buffer
+    
+    cache = get_cache()
+    stats = cache.stats
+    
+    # Contar requests por status
+    requests_by_status: dict[int, int] = {}
+    for entry in _audit_buffer:
+        status = entry.status_code
+        requests_by_status[status] = requests_by_status.get(status, 0) + 1
+    
+    # Verificar datasets
+    datasets_available = 0
+    for fname in ["fato_atividades_techdengue.parquet", "fato_dengue_historico.parquet"]:
+        path = Config.PATHS.output_dir / fname
+        if path.exists():
+            datasets_available += 1
+    
+    # Gerar métricas Prometheus
+    lines = [
+        "# HELP techdengue_cache_hits_total Total cache hits",
+        "# TYPE techdengue_cache_hits_total counter",
+        f"techdengue_cache_hits_total {stats.get('hits', 0)}",
+        "",
+        "# HELP techdengue_cache_misses_total Total cache misses",
+        "# TYPE techdengue_cache_misses_total counter",
+        f"techdengue_cache_misses_total {stats.get('misses', 0)}",
+        "",
+        "# HELP techdengue_cache_size Current cache size",
+        "# TYPE techdengue_cache_size gauge",
+        f"techdengue_cache_size {stats.get('size', 0)}",
+        "",
+        "# HELP techdengue_datasets_available Number of available datasets",
+        "# TYPE techdengue_datasets_available gauge",
+        f"techdengue_datasets_available {datasets_available}",
+        "",
+        "# HELP techdengue_requests_total Total requests by status code",
+        "# TYPE techdengue_requests_total counter",
+    ]
+    
+    for status, count in sorted(requests_by_status.items()):
+        lines.append(f'techdengue_requests_total{{status="{status}"}} {count}')
+    
+    return PlainTextResponse("\n".join(lines), media_type="text/plain")

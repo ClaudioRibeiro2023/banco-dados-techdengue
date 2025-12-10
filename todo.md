@@ -232,7 +232,8 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
   - Request ID em cada log
   - User/API key quando disponível
 
-- [ ] [P3] **4.4** [OPCIONAL] Criar endpoint `/metrics` para Prometheus
+- [x] [P3] **4.4** [OPCIONAL] Criar endpoint `/metrics` para Prometheus
+  - ✅ Concluído em 2025-12-10
 
 - [ ] [P3] **4.5** [OPCIONAL] Configurar dashboard de métricas (Grafana)
 
@@ -299,9 +300,9 @@ Use este arquivo como checklist vivo. Adicione notas rápidas abaixo dos itens c
 | 1 | 11 | 11 | 100% |
 | 2 | 9 | 8 | 89% |
 | 3 | 4 | 4 | 100% |
-| 4 | 5 | 2 | 40% |
+| 4 | 5 | 3 | 60% |
 | 5 | 7 | 6 | 86% |
-| **Total** | **42** | **37** | **88%** |
+| **Total** | **42** | **38** | **90%** |
 
 ---
 
