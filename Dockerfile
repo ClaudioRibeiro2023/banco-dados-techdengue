@@ -1,4 +1,5 @@
 # TechDengue API - Dockerfile
+# Build: 2025-12-09T23:33:00 - Force rebuild
 FROM python:3.11-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
