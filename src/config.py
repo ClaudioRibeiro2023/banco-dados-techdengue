@@ -151,8 +151,11 @@ class Config:
         if errors:
             raise ValueError(f"Erros de configuração: {', '.join(errors)}")
         
-        # Criar diretórios
-        cls.PATHS.ensure_dirs()
+        # Criar diretórios (ignorar erros em containers read-only)
+        try:
+            cls.PATHS.ensure_dirs()
+        except (PermissionError, OSError) as e:
+            warnings.warn(f"Não foi possível criar diretórios: {e}")
         
         return True
     

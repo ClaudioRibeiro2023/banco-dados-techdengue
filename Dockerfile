@@ -29,8 +29,12 @@ RUN useradd -m -u 10001 -s /usr/sbin/nologin appuser && \
     chown -R appuser:appuser /app
 USER appuser
 
-EXPOSE 8000
-ENV LOG_LEVEL=INFO \
+# Porta dinâmica para Railway (usa $PORT)
+ENV PORT=8000 \
+    LOG_LEVEL=INFO \
     CACHE_TTL_SECONDS=3600
 
-CMD ["uvicorn", "src.api.app:app", "--host", "0.0.0.0", "--port", "8000"]
+EXPOSE $PORT
+
+# Usar shell form para expandir $PORT
+CMD uvicorn src.api.app:app --host 0.0.0.0 --port $PORT

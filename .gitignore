@@ -11,6 +11,8 @@
 # Credenciais e Configurações
 .env
 .env.local
+.env.production
+railway.env
 config.ini
 secrets.json
 credentials.json
