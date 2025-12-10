@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/ClaudioRibeiro2023/banco-dados-techdengue/actions/workflows/deploy.yml/badge.svg)](https://github.com/ClaudioRibeiro2023/banco-dados-techdengue/actions)
 [![Coverage](https://img.shields.io/badge/Coverage-82%25-brightgreen)](https://github.com/ClaudioRibeiro2023/banco-dados-techdengue)
-[![Tests](https://img.shields.io/badge/Tests-59%20passed-success)](https://github.com/ClaudioRibeiro2023/banco-dados-techdengue)
+[![Tests](https://img.shields.io/badge/Tests-154%20passed-success)](https://github.com/ClaudioRibeiro2023/banco-dados-techdengue)
 [![Deploy Frontend](https://img.shields.io/badge/Frontend-Netlify-00C7B7?logo=netlify)](https://banco-dados-techdengue.netlify.app)
 [![Deploy API](https://img.shields.io/badge/API-Railway-0B0D0E?logo=railway)](https://banco-dados-techdengue-production.up.railway.app)
 [![Backend](https://img.shields.io/badge/Backend-FastAPI-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
