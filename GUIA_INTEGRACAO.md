@@ -1,8 +1,14 @@
 # 🦟 TechDengue API - Guia Técnico de Integração
 
-**Versão:** 1.0.0  
+**Versão:** 2.0.0  
 **Data:** Dezembro 2025  
-**Ambiente de Produção:** http://localhost:4010 (Docker)
+**Ambientes:**
+
+| Ambiente | URL | Status |
+|----------|-----|--------|
+| **Frontend (Dashboard)** | https://banco-dados-techdengue.netlify.app | 🟢 Produção |
+| **API (Backend)** | https://techdengue-api.railway.app | ⚙️ Configuração |
+| **API (Local)** | http://localhost:8000 | 🔧 Desenvolvimento |
 
 ---
 
@@ -125,7 +131,7 @@ GET  /api/v1/audit/logs
 
 ```bash
 # Criar nova API Key
-curl -X POST "http://localhost:4010/api/v1/keys" \
+curl -X POST "https://techdengue-api.railway.app/api/v1/keys" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Minha Aplicação",
@@ -153,7 +159,7 @@ Inclua no header `X-API-Key`:
 
 ```bash
 curl -H "X-API-Key: tk_live_xxxxx" \
-  "http://localhost:4010/api/v1/keys"
+  "https://techdengue-api.railway.app/api/v1/keys"
 ```
 
 ### 3.5 Tiers de Acesso
@@ -222,7 +228,7 @@ GET /api/v1/weather/{cidade}
 
 **Exemplo:**
 ```bash
-curl "http://localhost:4010/api/v1/weather/Belo%20Horizonte"
+curl "https://techdengue-api.railway.app/api/v1/weather/Belo%20Horizonte"
 ```
 
 **Resposta:**
@@ -353,7 +359,7 @@ from techdengue import TechDengueClient
 
 # Inicializar
 client = TechDengueClient(
-    base_url="http://localhost:4010",
+    base_url="https://techdengue-api.railway.app",
     api_key="tk_live_xxxxx"  # opcional
 )
 
@@ -401,21 +407,21 @@ result = asyncio.run(main())
 ### 6.1 Obter Dados de Dengue (JSON)
 
 ```bash
-curl -s "http://localhost:4010/dengue?limit=10&ano=2024" \
+curl -s "https://techdengue-api.railway.app/dengue?limit=10&ano=2024" \
   | jq '.data[].municipio'
 ```
 
 ### 6.2 Exportar para CSV
 
 ```bash
-curl -s "http://localhost:4010/facts?format=csv&limit=1000" \
+curl -s "https://techdengue-api.railway.app/facts?format=csv&limit=1000" \
   -o atividades.csv
 ```
 
 ### 6.3 Análise de Risco
 
 ```bash
-curl -X POST "http://localhost:4010/api/v1/risk/analyze" \
+curl -X POST "https://techdengue-api.railway.app/api/v1/risk/analyze" \
   -H "Content-Type: application/json" \
   -d '{
     "municipio": "Contagem",
@@ -428,7 +434,7 @@ curl -X POST "http://localhost:4010/api/v1/risk/analyze" \
 ### 6.4 Dashboard de Risco
 
 ```bash
-curl -s "http://localhost:4010/api/v1/risk/dashboard" \
+curl -s "https://techdengue-api.railway.app/api/v1/risk/dashboard" \
   | jq '{
     total: .total_cidades,
     criticos: .resumo.critico,
@@ -450,7 +456,7 @@ import time
 WEBHOOK_URL = "https://seu-sistema.com/webhook/dengue"
 
 def verificar_alertas():
-    response = requests.get("http://localhost:4010/api/v1/risk/dashboard")
+    response = requests.get("https://techdengue-api.railway.app/api/v1/risk/dashboard")
     data = response.json()
     
     if data.get("alerta"):
@@ -519,7 +525,7 @@ X-RateLimit-Reset: 1702159800
 ### 9.2 Verificar Cache
 
 ```bash
-curl "http://localhost:4010/api/v1/cache/stats"
+curl "https://techdengue-api.railway.app/api/v1/cache/stats"
 ```
 
 ```json
@@ -538,11 +544,11 @@ curl "http://localhost:4010/api/v1/cache/stats"
 
 ```bash
 # Limpar cache de clima
-curl -X POST "http://localhost:4010/api/v1/cache/clear?pattern=weather" \
+curl -X POST "https://techdengue-api.railway.app/api/v1/cache/clear?pattern=weather" \
   -H "X-API-Key: tk_xxxxx"
 
 # Limpar todo o cache
-curl -X POST "http://localhost:4010/api/v1/cache/clear" \
+curl -X POST "https://techdengue-api.railway.app/api/v1/cache/clear" \
   -H "X-API-Key: tk_xxxxx"
 ```
 
@@ -600,12 +606,12 @@ except TechDengueError as e:
 
 **URL de Dados:**
 ```
-http://localhost:4010/gold?format=csv&limit=10000
+https://techdengue-api.railway.app/gold?format=csv&limit=10000
 ```
 
 **Configuração no Power BI:**
 1. Obter Dados > Web
-2. URL: `http://localhost:4010/gold?format=csv`
+2. URL: `https://techdengue-api.railway.app/gold?format=csv`
 3. Atualização: Diária
 
 ### 11.2 Sistema de Alerta por Email (Python)
@@ -637,7 +643,7 @@ enviar_alerta(dashboard)
 
 ```typescript
 // api.ts
-const BASE_URL = 'http://localhost:4010';
+const BASE_URL = 'https://techdengue-api.railway.app';
 
 export async function getWeather(cidade: string) {
   const response = await fetch(`${BASE_URL}/api/v1/weather/${cidade}`);
@@ -714,13 +720,18 @@ populacao, area_km2, latitude, longitude
 
 ## 📞 Suporte
 
-- **Documentação Swagger:** http://localhost:4010/docs
-- **Documentação ReDoc:** http://localhost:4010/redoc
-- **Status da API:** http://localhost:4010/health
+- **Documentação Swagger:** https://techdengue-api.railway.app/docs
+- **Documentação ReDoc:** https://techdengue-api.railway.app/redoc
+- **Status da API:** https://techdengue-api.railway.app/health
 
 ---
 
 ## 📜 Changelog
+
+### v2.0.0 (Dezembro 2025)
+- **Deploy em produção:** Frontend no Netlify, API configurada para Railway
+- **URLs atualizadas** para ambientes online (sem dependência de localhost)
+- Documentação atualizada com exemplos de integração remota
 
 ### v1.0.0 (Dezembro 2025)
 - Lançamento inicial da API DaaS
