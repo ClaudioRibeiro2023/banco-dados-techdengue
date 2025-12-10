@@ -59,12 +59,18 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
   - Criar `Makefile` com targets equivalentes
   - Remover: `ATIVAR_DASHBOARD_NOVO.bat`, `RUN_*.bat`, `START_DASHBOARD.bat`
 
-- [ ] [P1] **0.5** Consolidar arquivos `.env`:
+- [x] [P0] **0.4** Limpar variáveis obsoletas do `.env`
+  - ✅ .env já está limpogada:
+  - Mover `docs/archive/` para backup externo ou deletar
+  - Mover `docs/legacy/` para backup externo ou deletar
+  - Consolidar documentação ativa em estrutura clara
+
+- [x] [P1] **0.5** Consolidar arquivos `.env`:
   - Manter apenas: `.env` (local), `.env.example` (template)
   - Remover: `railway.env` (usar variáveis no painel do Railway)
   - `.env.production` pode ficar ignorado no git
 
-- [ ] [P2] **0.6** Limpar documentação legada:
+- [x] [P2] **0.6** Limpar documentação legada:
   - Mover `docs/archive/` para backup externo ou deletar
   - Mover `docs/legacy/` para backup externo ou deletar
   - Consolidar documentação ativa em estrutura clara
@@ -245,6 +251,13 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
   - Criar índice navegável
   - Atualizar links quebrados
 
+- [x] [P0] **0.5** Consolidar duplicações de documentação
+  - ✅ Removido legacy/archive, atualizado docs/README.md em `/docs`:
+  - ✅ Concluído em 2025-12-10 (removido archive e legacy)
+  - Remover arquivos duplicados
+  - Criar índice navegável
+  - Atualizar links quebrados
+
 - [x] [P2] **5.3** Criar `.github/ISSUE_TEMPLATE/bug_report.md`
   - ✅ Concluído em 2025-12-10
 
@@ -279,13 +292,13 @@ Use este arquivo como checklist vivo. Adicione notas rápidas abaixo dos itens c
 
 | Fase | Total | Concluídos | % |
 |------|-------|------------|---|
-| 0 | 6 | 4 | 67% |
+| 0 | 6 | 6 | 100% |
 | 1 | 11 | 8 | 73% |
 | 2 | 9 | 8 | 89% |
 | 3 | 4 | 4 | 100% |
 | 4 | 5 | 2 | 40% |
 | 5 | 7 | 6 | 86% |
-| **Total** | **42** | **32** | **76%** |
+| **Total** | **42** | **34** | **81%** |
 
 ---
 

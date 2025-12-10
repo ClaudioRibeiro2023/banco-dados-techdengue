@@ -1,7 +1,7 @@
 # 📚 Documentação TechDengue Analytics
 
 **Versão:** 3.0.0  
-**Última atualização:** 30/10/2025
+**Última atualização:** 10/12/2025
 
 ---
 
@@ -88,19 +88,6 @@ Análises e resumos executivos:
 
 ---
 
-## 📜 Legacy / Histórico
-
-Documentação histórica (referência apenas, não essencial):
-
-| Documento | Descrição |
-|-----------|-----------|
-| Correções de Erros | Bugs corrigidos historicamente |
-| Melhorias Dashboard | Evolução do dashboard (versões antigas) |
-| Revisões e Redesigns | Iterações anteriores |
-| Executores antigos | Scripts deprecados |
-
-**Nota:** Esta documentação está arquivada para referência histórica. Use a documentação principal acima.
-
 ---
 
 ## 🔍 Como Encontrar o Que Preciso?
@@ -136,7 +123,6 @@ docs/
 ├── architecture/        # Arquitetura de dados (4 documentos)
 ├── guides/              # Guias práticos (5 documentos)
 ├── reports/             # Relatórios e análises (5 documentos + imagens)
-├── legacy/              # Histórico (10 documentos)
 └── README.md            # Este arquivo
 ```
 
@@ -163,5 +149,5 @@ docs/
 ---
 
 **Versão da documentação:** 3.0.0  
-**Última atualização:** 30/10/2025  
+**Última atualização:** 10/12/2025  
 **Status:** 🟢 Completa e atualizada
