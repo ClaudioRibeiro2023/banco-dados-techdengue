@@ -158,7 +158,8 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
   - Testar normalização de cidades
   - Testar mock weather data
 
-- [ ] [P2] **2.8** Adicionar badge de coverage no README
+- [x] [P2] **2.8** Adicionar badge de coverage no README
+  - ✅ Concluído em 2025-12-10
 
 - [ ] [P2] **2.9** Revisar testes E2E do frontend (Playwright)
 
@@ -234,16 +235,20 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
   - Padrões de código
   - Processo de PR
 
-- [ ] [P1] **5.2** Consolidar documentação em `/docs`:
+- [x] [P1] **5.2** Consolidar documentação em `/docs`:
+  - ✅ Concluído em 2025-12-10 (removido archive e legacy)
   - Remover arquivos duplicados
   - Criar índice navegável
   - Atualizar links quebrados
 
-- [ ] [P2] **5.3** Criar `.github/ISSUE_TEMPLATE/bug_report.md`
+- [x] [P2] **5.3** Criar `.github/ISSUE_TEMPLATE/bug_report.md`
+  - ✅ Concluído em 2025-12-10
 
-- [ ] [P2] **5.4** Criar `.github/ISSUE_TEMPLATE/feature_request.md`
+- [x] [P2] **5.4** Criar `.github/ISSUE_TEMPLATE/feature_request.md`
+  - ✅ Concluído em 2025-12-10
 
-- [ ] [P2] **5.5** Criar `.github/PULL_REQUEST_TEMPLATE.md`
+- [x] [P2] **5.5** Criar `.github/PULL_REQUEST_TEMPLATE.md`
+  - ✅ Concluído em 2025-12-10
 
 - [ ] [P2] **5.6** Atualizar README com seção de arquitetura
 
@@ -271,11 +276,11 @@ Use este arquivo como checklist vivo. Adicione notas rápidas abaixo dos itens c
 |------|-------|------------|---|
 | 0 | 6 | 4 | 67% |
 | 1 | 11 | 8 | 73% |
-| 2 | 9 | 6 | 67% |
+| 2 | 9 | 7 | 78% |
 | 3 | 4 | 2 | 50% |
 | 4 | 5 | 1 | 20% |
-| 5 | 7 | 1 | 14% |
-| **Total** | **42** | **22** | **52%** |
+| 5 | 7 | 5 | 71% |
+| **Total** | **42** | **27** | **64%** |
 
 ---
 
