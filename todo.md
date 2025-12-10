@@ -252,7 +252,8 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
 - [x] [P2] **5.5** Criar `.github/PULL_REQUEST_TEMPLATE.md`
   - ✅ Concluído em 2025-12-10
 
-- [ ] [P2] **5.6** Atualizar README com seção de arquitetura
+- [x] [P2] **5.6** Atualizar README com seção de arquitetura
+  - ✅ Concluído em 2025-12-10
 
 - [ ] [P3] **5.7** [OPCIONAL] Configurar MkDocs para documentação
 
@@ -281,8 +282,8 @@ Use este arquivo como checklist vivo. Adicione notas rápidas abaixo dos itens c
 | 2 | 9 | 7 | 78% |
 | 3 | 4 | 3 | 75% |
 | 4 | 5 | 2 | 40% |
-| 5 | 7 | 5 | 71% |
-| **Total** | **42** | **29** | **69%** |
+| 5 | 7 | 6 | 86% |
+| **Total** | **42** | **30** | **71%** |
 
 ---
 
