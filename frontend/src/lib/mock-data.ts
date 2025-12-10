@@ -183,7 +183,7 @@ export const mockDataRows: DataRow[] = Array.from({ length: 100 }, (_, i) => ({
   id: `row-${i + 1}`,
   municipio: ['Uberlândia', 'Uberaba', 'Ituiutaba', 'Patos de Minas', 'Araguari'][i % 5],
   urs: ['URS Norte', 'URS Sul', 'URS Leste', 'URS Oeste'][i % 4],
-  ano: 2020 + (i % 5),
+  ano: 2023 + (i % 3), // Anos válidos: 2023, 2024, 2025 (projeto iniciou em 2023)
   pois: Math.floor(Math.random() * 1000) + 100,
   atividades: Math.floor(Math.random() * 500) + 50,
   hectares: Math.floor(Math.random() * 10000) + 1000,
