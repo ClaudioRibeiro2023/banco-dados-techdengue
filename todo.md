@@ -169,7 +169,8 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
 
 > **Objetivo:** Otimizar build e melhorar DX.
 
-- [ ] [P0] **3.1** Criar `Makefile`:
+- [x] [P0] **3.1** Criar `Makefile`:
+  - ✅ Já existia completo
   ```makefile
   .PHONY: dev test lint build
 
@@ -215,7 +216,8 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
   - Verificar existência dos Parquet files
   - Retornar `ok: false` se dependências falharem
 
-- [ ] [P2] **4.3** Adicionar contexto aos logs:
+- [x] [P2] **4.3** Adicionar contexto aos logs:
+  - ✅ Concluído em 2025-12-10 (contextvars para request_id)
   - Request ID em cada log
   - User/API key quando disponível
 
@@ -277,10 +279,10 @@ Use este arquivo como checklist vivo. Adicione notas rápidas abaixo dos itens c
 | 0 | 6 | 4 | 67% |
 | 1 | 11 | 8 | 73% |
 | 2 | 9 | 7 | 78% |
-| 3 | 4 | 2 | 50% |
-| 4 | 5 | 1 | 20% |
+| 3 | 4 | 3 | 75% |
+| 4 | 5 | 2 | 40% |
 | 5 | 7 | 5 | 71% |
-| **Total** | **42** | **27** | **64%** |
+| **Total** | **42** | **29** | **69%** |
 
 ---
 

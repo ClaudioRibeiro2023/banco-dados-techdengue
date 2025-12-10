@@ -5,6 +5,7 @@ Registra todas as requisições para compliance e análise.
 
 import os
 import json
+from contextvars import ContextVar
 from datetime import datetime, timezone
 from typing import Optional, Any
 from collections import deque
@@ -14,6 +15,14 @@ from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoin
 from pydantic import BaseModel, Field
 
 from loguru import logger
+
+# Context variable para request_id (propagação entre módulos)
+request_id_ctx: ContextVar[str] = ContextVar("request_id", default="system")
+
+
+def get_request_id() -> str:
+    """Retorna o request_id do contexto atual."""
+    return request_id_ctx.get()
 
 
 class AuditLogEntry(BaseModel):
@@ -48,6 +57,9 @@ class AuditMiddleware(BaseHTTPMiddleware):
         # Gerar request ID
         request_id = str(uuid.uuid4())[:8]
         request.state.request_id = request_id
+        
+        # Propagar para o contexto (acessível em todos os módulos)
+        token = request_id_ctx.set(request_id)
         
         start_time = time.perf_counter()
         error_msg = None
@@ -113,6 +125,9 @@ class AuditMiddleware(BaseHTTPMiddleware):
                 logger.warning(f"API Request: {json.dumps(log_data)}")
             else:
                 logger.info(f"API Request: {json.dumps(log_data)}")
+            
+            # Resetar contexto
+            request_id_ctx.reset(token)
 
 
 def get_recent_logs(
