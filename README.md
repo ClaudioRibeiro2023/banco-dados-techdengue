@@ -1,9 +1,12 @@
 # 🦟 TechDengue - Sistema de Dados e Analytics
 
+[![CI](https://github.com/ClaudioRibeiro2023/banco-dados-techdengue/actions/workflows/deploy.yml/badge.svg)](https://github.com/ClaudioRibeiro2023/banco-dados-techdengue/actions)
+[![Coverage](https://img.shields.io/badge/Coverage-82%25-brightgreen)](https://github.com/ClaudioRibeiro2023/banco-dados-techdengue)
+[![Tests](https://img.shields.io/badge/Tests-59%20passed-success)](https://github.com/ClaudioRibeiro2023/banco-dados-techdengue)
 [![Deploy Frontend](https://img.shields.io/badge/Frontend-Netlify-00C7B7?logo=netlify)](https://banco-dados-techdengue.netlify.app)
 [![Deploy API](https://img.shields.io/badge/API-Railway-0B0D0E?logo=railway)](https://banco-dados-techdengue-production.up.railway.app)
 [![Backend](https://img.shields.io/badge/Backend-FastAPI-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
-[![Python](https://img.shields.io/badge/Python-3.14-3776AB?logo=python)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python)](https://www.python.org/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react)](https://react.dev/)
 
 > Sistema completo de dados integrados do Projeto TechDengue para monitoramento e análise de atividades de controle de dengue em Minas Gerais.
