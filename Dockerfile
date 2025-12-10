@@ -23,8 +23,9 @@ COPY src ./src
 COPY run.py ./
 COPY README.md ./
 
-# Diretório de dados (parquet) será montado por volume
+# Diretório de dados (parquet) - copiar arquivos locais
 RUN mkdir -p /app/dados_integrados
+COPY dados_integrados/*.parquet /app/dados_integrados/
 
 # Usuário não-root
 RUN useradd -m -u 10001 -s /usr/sbin/nologin appuser && \
