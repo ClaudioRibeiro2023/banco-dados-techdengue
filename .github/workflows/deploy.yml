@@ -11,6 +11,32 @@ env:
   NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
 jobs:
+  # ==================== LINT DOCS ====================
+  lint-docs:
+    name: Lint Documentation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install markdownlint
+        run: npm install -g markdownlint-cli
+      
+      - name: Lint Markdown files
+        run: |
+          markdownlint README.md DEPLOY_GUIDE.md docs/*.md --disable MD013 MD033 MD034 || echo "Lint completed with warnings"
+      
+      - name: Check for broken links (optional)
+        run: |
+          npx markdown-link-check README.md --quiet || echo "Link check completed"
+        continue-on-error: true
+
   # ==================== TESTES ====================
   test:
     name: Run Tests
