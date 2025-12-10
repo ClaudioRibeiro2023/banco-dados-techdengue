@@ -4,6 +4,7 @@ Fatores climáticos são fundamentais para análise de risco de dengue.
 """
 
 import os
+import unicodedata
 from datetime import datetime, timezone
 from typing import Optional, Any
 
@@ -120,7 +121,6 @@ class WeatherService:
     def _normalize_cidade(self, cidade: str) -> str:
         """Normaliza nome de cidade para busca."""
         # Remover acentos e converter para lowercase
-        import unicodedata
         normalized = unicodedata.normalize('NFKD', cidade.lower())
         normalized = normalized.encode('ASCII', 'ignore').decode('ASCII')
         normalized = normalized.replace('-', ' ').strip()

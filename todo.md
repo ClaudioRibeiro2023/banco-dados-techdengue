@@ -118,11 +118,14 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
   - ✅ Concluído em 2025-12-10
   - Extrair dependências comuns (cache, db, rate limiter)
 
-- [ ] [P2] **1.9** Mover import de `unicodedata` para topo em `weather.py`
+- [x] [P2] **1.9** Mover import de `unicodedata` para topo em `weather.py`
+  - ✅ Concluído em 2025-12-10
 
-- [ ] [P2] **1.10** Criar `src/shared/__init__.py`
+- [x] [P2] **1.10** Criar `src/shared/__init__.py`
+  - ✅ Concluído em 2025-12-10
 
-- [ ] [P2] **1.11** Criar `src/shared/exporters.py`:
+- [x] [P2] **1.11** Criar `src/shared/exporters.py`:
+  - ✅ Concluído em 2025-12-10
   - Consolidar lógica de export CSV/Parquet
 
 ---
@@ -293,12 +296,12 @@ Use este arquivo como checklist vivo. Adicione notas rápidas abaixo dos itens c
 | Fase | Total | Concluídos | % |
 |------|-------|------------|---|
 | 0 | 6 | 6 | 100% |
-| 1 | 11 | 8 | 73% |
+| 1 | 11 | 11 | 100% |
 | 2 | 9 | 8 | 89% |
 | 3 | 4 | 4 | 100% |
 | 4 | 5 | 2 | 40% |
 | 5 | 7 | 6 | 86% |
-| **Total** | **42** | **34** | **81%** |
+| **Total** | **42** | **37** | **88%** |
 
 ---
 
