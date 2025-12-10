@@ -77,14 +77,19 @@ class TestRiskEndpoints:
             assert isinstance(data, (list, dict))
     
     def test_risk_analyze_endpoint(self):
-        """GET /api/v1/risk/analyze deve estar disponível."""
-        r = client.get("/api/v1/risk/analyze")
-        # Pode requerer parâmetros, então 422 também é válido
+        """POST /api/v1/risk/analyze deve estar disponível."""
+        # Endpoint é POST, não GET
+        r = client.post("/api/v1/risk/analyze", json={"municipio": "Uberlândia"})
+        # Pode retornar sucesso ou erro de validação
         assert r.status_code in [200, 400, 422, 500, 503]
     
     def test_risk_analyze_with_cidade(self):
         """Análise de risco com cidade deve funcionar."""
-        r = client.get("/api/v1/risk/analyze", params={"cidade": "uberlandia"})
+        r = client.post("/api/v1/risk/analyze", json={
+            "municipio": "Uberlândia",
+            "casos_recentes": 100,
+            "populacao": 700000
+        })
         assert r.status_code in [200, 400, 422, 500, 503]
 
 

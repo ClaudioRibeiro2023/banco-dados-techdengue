@@ -101,25 +101,25 @@ def facts_summary(
         key_col = None
 
     if key_col:
+        # Usar coluna diferente para count quando agrupando por nomenclatura_atividade
+        count_col = "pois" if key_col == "nomenclatura_atividade" else "nomenclatura_atividade"
         g = (
             df.groupby(key_col)
             .agg(
-                {
-                    "pois": "sum",
-                    "devolutivas": "sum",
-                    "hectares_mapeados": "sum",
-                    "nomenclatura_atividade": "count",
-                }
+                total_pois=("pois", "sum"),
+                total_devolutivas=("devolutivas", "sum"),
+                total_hectares=("hectares_mapeados", "sum"),
+                atividades=(count_col, "count"),
             )
             .reset_index()
-            .rename(columns={key_col: "key", "nomenclatura_atividade": "atividades"})
+            .rename(columns={key_col: "key"})
         )
         items = [
             SummaryItem(
                 key=str(r["key"]) if r.get("key") is not None else None,
-                total_pois=int(r["pois"]) if pd.notna(r["pois"]) else 0,
-                total_devolutivas=float(r["devolutivas"]) if pd.notna(r["devolutivas"]) else 0.0,
-                total_hectares=float(r["hectares_mapeados"]) if pd.notna(r["hectares_mapeados"]) else 0.0,
+                total_pois=int(r["total_pois"]) if pd.notna(r["total_pois"]) else 0,
+                total_devolutivas=float(r["total_devolutivas"]) if pd.notna(r["total_devolutivas"]) else 0.0,
+                total_hectares=float(r["total_hectares"]) if pd.notna(r["total_hectares"]) else 0.0,
                 atividades=int(r["atividades"]) if pd.notna(r["atividades"]) else 0,
             )
             for _, r in g.iterrows()
