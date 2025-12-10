@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts'
-import { formatDate } from '@/lib/utils'
+import { formatDate } from '../lib/utils'
 import { Activity, Database, CheckCircle2, AlertTriangle, Loader2 } from 'lucide-react'
 import { useMonitorData } from '@/lib/queries'
 
