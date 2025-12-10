@@ -1,0 +1,54 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e8]: T
+        - generic [ref=e9]:
+          - heading "TechDengue" [level=1] [ref=e10]
+          - paragraph [ref=e11]: Analytics v1.0
+      - generic [ref=e12]:
+        - button "⌘ K" [ref=e13] [cursor=pointer]:
+          - generic:
+            - generic: ⌘
+            - text: K
+        - button "Toggle theme" [ref=e14] [cursor=pointer]:
+          - img [ref=e15]
+          - img
+          - generic [ref=e21]: Toggle theme
+  - complementary [ref=e22]:
+    - navigation [ref=e23]:
+      - link "Monitor Live" [ref=e24] [cursor=pointer]:
+        - /url: /
+        - img [ref=e25]
+        - generic [ref=e28]: Monitor
+        - generic [ref=e29]: Live
+      - link "Qualidade 94%" [ref=e30] [cursor=pointer]:
+        - /url: /quality
+        - img [ref=e31]
+        - generic [ref=e33]: Qualidade
+        - generic [ref=e34]: 94%
+      - link "Dados" [ref=e35] [cursor=pointer]:
+        - /url: /data-table
+        - img [ref=e36]
+        - generic [ref=e38]: Dados
+      - link "Configurações" [ref=e39] [cursor=pointer]:
+        - /url: /settings
+        - img [ref=e40]
+        - generic [ref=e43]: Configurações
+      - link "Documentação" [ref=e44] [cursor=pointer]:
+        - /url: /docs
+        - img [ref=e45]
+        - generic [ref=e48]: Documentação
+    - generic [ref=e50]:
+      - generic [ref=e52]: U
+      - generic [ref=e53]:
+        - paragraph [ref=e54]: Usuário
+        - paragraph [ref=e55]: user@techdengue.com
+  - main [ref=e56]:
+    - generic [ref=e59]:
+      - img [ref=e60]
+      - generic [ref=e62]: Carregando dados...
+```

@@ -1,0 +1,142 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - button "Toggle menu" [ref=e6] [cursor=pointer]:
+          - img [ref=e7]
+          - generic [ref=e8]: Toggle menu
+        - generic [ref=e11]: T
+        - button "Toggle theme" [ref=e13] [cursor=pointer]:
+          - img [ref=e14]
+          - img
+          - generic [ref=e20]: Toggle theme
+    - complementary [ref=e21]:
+      - generic [ref=e22]:
+        - heading "Menu" [level=2] [ref=e23]
+        - button "Close menu" [ref=e24] [cursor=pointer]:
+          - img [ref=e25]
+          - generic [ref=e28]: Close menu
+      - navigation [ref=e29]:
+        - link "Monitor Live" [ref=e30]:
+          - /url: /
+          - img [ref=e31]
+          - generic [ref=e34]: Monitor
+          - generic [ref=e35]: Live
+        - link "Qualidade 94%" [ref=e36]:
+          - /url: /quality
+          - img [ref=e37]
+          - generic [ref=e39]: Qualidade
+          - generic [ref=e40]: 94%
+        - link "Dados" [ref=e41]:
+          - /url: /data-table
+          - img [ref=e42]
+          - generic [ref=e44]: Dados
+        - link "Configurações" [ref=e45]:
+          - /url: /settings
+          - img [ref=e46]
+          - generic [ref=e49]: Configurações
+        - link "Documentação" [ref=e50]:
+          - /url: /docs
+          - img [ref=e51]
+          - generic [ref=e54]: Documentação
+      - generic [ref=e56]:
+        - generic [ref=e58]: U
+        - generic [ref=e59]:
+          - paragraph [ref=e60]: Usuário
+          - paragraph [ref=e61]: user@techdengue.com
+    - main [ref=e62]:
+      - generic [ref=e65]:
+        - generic [ref=e67]:
+          - heading "Monitor de Qualidade" [level=1] [ref=e68]
+          - paragraph [ref=e69]: "Dashboard em tempo real - Última atualização: 9 de dezembro de 2025 às 22:57"
+        - generic [ref=e71]:
+          - generic [ref=e72]:
+            - generic [ref=e73]:
+              - paragraph [ref=e74]: Database
+              - img [ref=e75]
+            - generic [ref=e79]:
+              - generic [ref=e80]: ONLINE
+              - paragraph [ref=e81]: PostgreSQL RDS conectado
+              - generic [ref=e82]: ✓ Conectado
+          - generic [ref=e83]:
+            - generic [ref=e84]:
+              - paragraph [ref=e85]: Quality Score
+              - img [ref=e86]
+            - generic [ref=e88]:
+              - generic [ref=e89]: 98%
+              - paragraph [ref=e90]: +2.3% vs mês anterior
+              - generic [ref=e91]: Excelente
+          - generic [ref=e92]:
+            - generic [ref=e93]:
+              - paragraph [ref=e94]: Validações
+              - img [ref=e95]
+            - generic [ref=e98]:
+              - generic [ref=e99]: 4/4
+              - paragraph [ref=e100]: 100.0% aprovadas
+              - generic [ref=e101]: 0 pendentes
+          - generic [ref=e102]:
+            - generic [ref=e103]:
+              - paragraph [ref=e104]: Total de Arquivos
+              - img [ref=e105]
+            - generic [ref=e107]:
+              - generic [ref=e108]: "11"
+              - paragraph [ref=e109]: Across all layers
+              - generic [ref=e110]:
+                - generic [ref=e111]: "B: 5"
+                - generic [ref=e112]: "S: 4"
+                - generic [ref=e113]: "G: 2"
+        - generic [ref=e114]:
+          - generic [ref=e115]:
+            - generic [ref=e116]:
+              - heading "Tendência de Qualidade" [level=3] [ref=e117]
+              - paragraph [ref=e118]: Evolução do score nos últimos 6 meses
+            - img [ref=e122]:
+              - generic [ref=e128]:
+                - generic [ref=e130]: Out
+                - generic [ref=e132]: Nov
+                - generic [ref=e134]: Dez
+              - generic [ref=e136]:
+                - generic [ref=e138]: "80"
+                - generic [ref=e140]: "85"
+                - generic [ref=e142]: "90"
+                - generic [ref=e144]: "95"
+                - generic [ref=e146]: "100"
+          - generic [ref=e153]:
+            - generic [ref=e154]:
+              - heading "Distribuição por Camada" [level=3] [ref=e155]
+              - paragraph [ref=e156]: Arquivos em cada camada do data lake
+            - img [ref=e160]:
+              - generic [ref=e162]:
+                - generic [ref=e163]:
+                  - img [ref=e165]
+                  - img [ref=e167]
+                  - img [ref=e169]
+                - generic [ref=e170]:
+                  - generic [ref=e172]: "Bronze: 5"
+                  - generic [ref=e174]: "Silver: 4"
+                  - generic [ref=e176]: "Gold: 2"
+        - generic [ref=e177]:
+          - generic [ref=e178]:
+            - heading "Log de Atividades" [level=3] [ref=e179]
+            - paragraph [ref=e180]: Últimas 5 atividades do sistema
+          - generic [ref=e182]:
+            - generic [ref=e183]:
+              - generic [ref=e184]: INFO
+              - generic [ref=e185]:
+                - paragraph [ref=e186]: API conectada com sucesso
+                - paragraph [ref=e187]: 9 de dezembro de 2025 às 22:57
+            - generic [ref=e188]:
+              - generic [ref=e189]: SUCCESS
+              - generic [ref=e190]:
+                - paragraph [ref=e191]: PostgreSQL RDS conectado
+                - paragraph [ref=e192]: Status do banco PostgreSQL
+            - generic [ref=e193]:
+              - generic [ref=e194]: DATA
+              - generic [ref=e195]:
+                - paragraph [ref=e196]: 1,281 atividades carregadas
+                - paragraph [ref=e197]: 314,880 POIs identificados
+  - generic [ref=e198]: "80"
+```
