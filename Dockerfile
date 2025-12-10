@@ -30,12 +30,11 @@ RUN useradd -m -u 10001 -s /usr/sbin/nologin appuser && \
 USER appuser
 
 # Variáveis de ambiente padrão
-ENV PORT=8000 \
-    LOG_LEVEL=INFO \
+ENV LOG_LEVEL=INFO \
     CACHE_TTL_SECONDS=3600
 
 EXPOSE 8000
 
 # Railway usa startCommand do railway.json
 # Fallback para execução local
-CMD ["sh", "-c", "uvicorn src.api.app:app --host 0.0.0.0 --port ${PORT:-8000}"]
+CMD ["uvicorn", "src.api.app:app", "--host", "0.0.0.0", "--port", "8000"]
