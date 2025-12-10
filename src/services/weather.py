@@ -78,6 +78,30 @@ class WeatherService:
         "Ipatinga": {"lat": -19.4683, "lon": -42.5367, "ibge": "3131307"},
     }
     
+    # Mapeamento de nomes normalizados (sem acentos, lowercase) para nomes reais
+    CIDADES_NORMALIZE = {
+        "belo horizonte": "Belo Horizonte",
+        "belo-horizonte": "Belo Horizonte",
+        "belohorizonte": "Belo Horizonte",
+        "uberlandia": "Uberlândia",
+        "contagem": "Contagem",
+        "juiz de fora": "Juiz de Fora",
+        "juiz-de-fora": "Juiz de Fora",
+        "juizdefora": "Juiz de Fora",
+        "betim": "Betim",
+        "montes claros": "Montes Claros",
+        "montes-claros": "Montes Claros",
+        "montesclaros": "Montes Claros",
+        "ribeirao das neves": "Ribeirão das Neves",
+        "ribeirao-das-neves": "Ribeirão das Neves",
+        "ribeiraoneves": "Ribeirão das Neves",
+        "uberaba": "Uberaba",
+        "governador valadares": "Governador Valadares",
+        "governador-valadares": "Governador Valadares",
+        "governadorvaladares": "Governador Valadares",
+        "ipatinga": "Ipatinga",
+    }
+    
     def __init__(self, api_key: Optional[str] = None):
         self.api_key = api_key or os.getenv("OPENWEATHER_API_KEY")
         self._client = httpx.AsyncClient(timeout=10.0)
@@ -93,6 +117,18 @@ class WeatherService:
     def is_configured(self) -> bool:
         return bool(self.api_key)
     
+    def _normalize_cidade(self, cidade: str) -> str:
+        """Normaliza nome de cidade para busca."""
+        # Remover acentos e converter para lowercase
+        import unicodedata
+        normalized = unicodedata.normalize('NFKD', cidade.lower())
+        normalized = normalized.encode('ASCII', 'ignore').decode('ASCII')
+        normalized = normalized.replace('-', ' ').strip()
+        
+        # Tentar encontrar no mapeamento
+        return self.CIDADES_NORMALIZE.get(normalized, 
+               self.CIDADES_NORMALIZE.get(cidade.lower(), cidade))
+    
     async def get_current_weather(
         self,
         cidade: str,
@@ -107,16 +143,19 @@ class WeatherService:
             lat: Latitude (opcional se cidade estiver no dicionário)
             lon: Longitude (opcional se cidade estiver no dicionário)
         """
+        # Normalizar nome da cidade
+        cidade_normalizada = self._normalize_cidade(cidade)
+        
         if not self.is_configured:
-            return self._get_mock_weather(cidade)
+            return self._get_mock_weather(cidade_normalizada)
         
         # Obter coordenadas
         if lat is None or lon is None:
-            coords = self.CIDADES_MG.get(cidade)
+            coords = self.CIDADES_MG.get(cidade_normalizada)
             if coords:
                 lat, lon = coords["lat"], coords["lon"]
             else:
-                logger.warning(f"Coordenadas não encontradas para {cidade}")
+                logger.warning(f"Coordenadas não encontradas para {cidade} (normalizado: {cidade_normalizada})")
                 return None
         
         # Verificar cache
@@ -141,7 +180,7 @@ class WeatherService:
             data = response.json()
             
             weather = WeatherData(
-                cidade=cidade,
+                cidade=cidade_normalizada,
                 temperatura=data["main"]["temp"],
                 sensacao_termica=data["main"]["feels_like"],
                 umidade=data["main"]["humidity"],
@@ -162,7 +201,7 @@ class WeatherService:
             
         except Exception as e:
             logger.error(f"Erro ao obter clima de {cidade}: {e}")
-            return self._get_mock_weather(cidade)
+            return self._get_mock_weather(cidade_normalizada)
     
     async def get_all_cities_weather(self) -> list[WeatherData]:
         """Obtém clima de todas as cidades principais de MG."""
