@@ -1,20 +1,17 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { StatCard } from '@/components/ui/stat-card'
+import { Loading } from '@/components/ui/spinner'
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts'
 import { formatDate } from '../lib/utils'
-import { Activity, Database, CheckCircle2, AlertTriangle, Loader2 } from 'lucide-react'
+import { Activity, Database, CheckCircle2, AlertTriangle, FileStack } from 'lucide-react'
 import { useMonitorData } from '@/lib/queries'
 
 export function MonitorPage() {
   const { data, isLoading, error } = useMonitorData()
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
-        <span className="ml-2">Carregando dados...</span>
-      </div>
-    )
+    return <Loading text="Carregando dados do monitor..." />
   }
 
   if (error || !data) {
@@ -55,67 +52,34 @@ export function MonitorPage() {
 
       {/* Status Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardDescription>Database</CardDescription>
-            <Database className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{data.database.status.toUpperCase()}</div>
-            <p className="text-xs text-muted-foreground mt-1">{data.database.message}</p>
-            <Badge variant="success" className="mt-2">✓ Conectado</Badge>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardDescription>Quality Score</CardDescription>
-            <Activity className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{data.qualityScore}%</div>
-            <p className="text-xs text-muted-foreground mt-1">+2.3% vs mês anterior</p>
-            <Badge variant="success" className="mt-2">Excelente</Badge>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardDescription>Validações</CardDescription>
-            <CheckCircle2 className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {data.validations.passed}/{data.validations.total}
-            </div>
-            <p className="text-xs text-muted-foreground mt-1">
-              {((data.validations.passed / data.validations.total) * 100).toFixed(1)}% aprovadas
-            </p>
-            <Badge variant="warning" className="mt-2">
-              {data.validations.total - data.validations.passed} pendentes
-            </Badge>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardDescription>Total de Arquivos</CardDescription>
-            <AlertTriangle className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {data.layers.bronze + data.layers.silver + data.layers.gold}
-            </div>
-            <p className="text-xs text-muted-foreground mt-1">
-              Across all layers
-            </p>
-            <div className="flex gap-1 mt-2">
-              <Badge variant="outline" className="text-xs">B: {data.layers.bronze}</Badge>
-              <Badge variant="outline" className="text-xs">S: {data.layers.silver}</Badge>
-              <Badge variant="outline" className="text-xs">G: {data.layers.gold}</Badge>
-            </div>
-          </CardContent>
-        </Card>
+        <StatCard
+          title="Database"
+          value={data.database.status.toUpperCase()}
+          icon={<Database className="h-5 w-5" />}
+          variant={data.database.status === 'online' ? 'success' : 'error'}
+          description={data.database.message}
+        />
+        <StatCard
+          title="Quality Score"
+          value={data.qualityScore}
+          suffix="%"
+          icon={<Activity className="h-5 w-5" />}
+          variant="success"
+          trend={2.3}
+        />
+        <StatCard
+          title="Validações"
+          value={`${data.validations.passed}/${data.validations.total}`}
+          icon={<CheckCircle2 className="h-5 w-5" />}
+          variant={data.validations.passed === data.validations.total ? 'success' : 'warning'}
+          description={`${((data.validations.passed / data.validations.total) * 100).toFixed(1)}% aprovadas`}
+        />
+        <StatCard
+          title="Total de Arquivos"
+          value={data.layers.bronze + data.layers.silver + data.layers.gold}
+          icon={<FileStack className="h-5 w-5" />}
+          description={`B:${data.layers.bronze} S:${data.layers.silver} G:${data.layers.gold}`}
+        />
       </div>
 
       {/* Charts Row */}

@@ -13,9 +13,11 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { Input } from '@/components/ui/input'
+import { StatCard } from '@/components/ui/stat-card'
 import { mockDataRows, type DataRow } from '@/lib/mock-data'
 import { formatNumber } from '@/lib/utils'
-import { ArrowUpDown, ChevronLeft, ChevronRight, Download } from 'lucide-react'
+import { ArrowUpDown, ChevronLeft, ChevronRight, Download, Search, Database, Activity, MapPin, Gauge } from 'lucide-react'
 
 const columns: ColumnDef<DataRow>[] = [
   {
@@ -193,50 +195,35 @@ export function DataTablePage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>Total POIs</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {formatNumber(mockDataRows.reduce((sum, row) => sum + row.pois, 0))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>Total Atividades</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {formatNumber(mockDataRows.reduce((sum, row) => sum + row.atividades, 0))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>Total Hectares</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {formatNumber(mockDataRows.reduce((sum, row) => sum + row.hectares, 0))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>Qualidade Média</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {(mockDataRows.reduce((sum, row) => sum + row.qualidade, 0) / mockDataRows.length).toFixed(1)}%
-            </div>
-          </CardContent>
-        </Card>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <StatCard
+          title="Total POIs"
+          value={formatNumber(mockDataRows.reduce((sum, row) => sum + row.pois, 0))}
+          icon={<MapPin className="h-5 w-5" />}
+          variant="primary"
+          description="Pontos de interesse"
+        />
+        <StatCard
+          title="Total Atividades"
+          value={formatNumber(mockDataRows.reduce((sum, row) => sum + row.atividades, 0))}
+          icon={<Activity className="h-5 w-5" />}
+          variant="success"
+          trend={12.5}
+        />
+        <StatCard
+          title="Total Hectares"
+          value={formatNumber(mockDataRows.reduce((sum, row) => sum + row.hectares, 0))}
+          icon={<Database className="h-5 w-5" />}
+          description="Área mapeada"
+        />
+        <StatCard
+          title="Qualidade Média"
+          value={(mockDataRows.reduce((sum, row) => sum + row.qualidade, 0) / mockDataRows.length).toFixed(1)}
+          suffix="%"
+          icon={<Gauge className="h-5 w-5" />}
+          variant="success"
+          trend={2.3}
+        />
       </div>
 
       {/* Data Table */}
@@ -247,12 +234,13 @@ export function DataTablePage() {
               <CardTitle>Dados Analíticos</CardTitle>
               <CardDescription>Filtros, ordenação e paginação</CardDescription>
             </div>
-            <input
+            <Input
               type="search"
               placeholder="Buscar em todas as colunas..."
               value={globalFilter ?? ''}
               onChange={(e) => setGlobalFilter(e.target.value)}
-              className="px-3 py-2 border rounded-md w-64"
+              leftIcon={<Search className="h-4 w-4" />}
+              className="w-64"
             />
           </div>
         </CardHeader>
