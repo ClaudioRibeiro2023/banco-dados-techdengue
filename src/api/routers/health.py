@@ -30,8 +30,13 @@ def health() -> Any:
     - Versão da API
     - Datasets disponíveis e seus tamanhos
     - Status da conexão com o banco PostgreSQL
+    - Status do cache Redis
     """
+    issues = []
+    
+    # Verificar datasets
     datasets = {}
+    datasets_ok = 0
     remote_base = getattr(Config, "DATASETS_REMOTE_URL", "") or ""
     for fname in [
         "fato_atividades_techdengue.parquet",
@@ -47,28 +52,65 @@ def health() -> Any:
                     if resp.status_code == 200:
                         size = int(resp.headers.get("Content-Length", "0") or "0")
                         datasets[fname] = {"exists": True, "size": size}
+                        datasets_ok += 1
                     else:
                         datasets[fname] = {"exists": False, "size": 0}
                 except Exception:
                     datasets[fname] = {"exists": False, "size": 0}
             else:
                 path = Config.PATHS.output_dir / fname
+                exists = path.exists()
                 datasets[fname] = {
-                    "exists": path.exists(),
-                    "size": path.stat().st_size if path.exists() else 0,
+                    "exists": exists,
+                    "size": path.stat().st_size if exists else 0,
                 }
+                if exists:
+                    datasets_ok += 1
         except Exception:
             datasets[fname] = {"exists": False, "size": 0}
+    
+    if datasets_ok == 0:
+        issues.append("No datasets available")
 
+    # Verificar banco de dados
     db_ok = False
     try:
         repo = TechDengueRepository()
         db_ok = repo.test_connection()
     except Exception as e:
         logger.warning(f"DB health check failed: {e}")
-        db_ok = False
+        issues.append(f"Database connection failed: {str(e)[:50]}")
 
-    return HealthResponse(ok=True, version=Config.VERSION, datasets=datasets, db_connected=db_ok)
+    # Verificar cache Redis
+    cache_ok = False
+    cache_backend = "memory"
+    try:
+        cache = get_cache()
+        cache_backend = cache.stats.get("backend", "memory")
+        cache_ok = True
+    except Exception as e:
+        logger.warning(f"Cache health check failed: {e}")
+        issues.append(f"Cache error: {str(e)[:50]}")
+
+    # Determinar status geral
+    # API está OK se tiver pelo menos 1 dataset disponível
+    is_healthy = datasets_ok > 0
+
+    result = HealthResponse(
+        ok=is_healthy,
+        version=Config.VERSION,
+        datasets=datasets,
+        db_connected=db_ok,
+    )
+    
+    # Adicionar informações extras
+    response_data = result.model_dump()
+    response_data["cache"] = {"connected": cache_ok, "backend": cache_backend}
+    response_data["datasets_available"] = datasets_ok
+    if issues:
+        response_data["issues"] = issues
+    
+    return JSONResponse(content=response_data, status_code=200 if is_healthy else 503)
 
 
 @router.get("/monitor", tags=["Health"], summary="Dashboard de monitoramento")
