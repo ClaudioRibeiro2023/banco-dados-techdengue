@@ -30,12 +30,37 @@ def get_api_key_or_ip(request: Request) -> str:
 
 
 # Configuração do limiter
-limiter = Limiter(
-    key_func=get_api_key_or_ip,
-    default_limits=["60/minute"],  # Tier Free
-    storage_uri=os.getenv("REDIS_URL", "memory://"),
-    strategy="fixed-window",
-)
+def _get_storage_uri() -> str:
+    """Determina o storage URI para o rate limiter."""
+    redis_url = os.getenv("REDIS_URL", "")
+    
+    # Em ambiente de teste ou dev sem Redis, usar memória
+    if not redis_url or os.getenv("TESTING", "").lower() == "true":
+        return "memory://"
+    
+    # Verificar se é URL Upstash válida
+    if redis_url.startswith("redis://") or redis_url.startswith("rediss://"):
+        return redis_url
+    
+    return "memory://"
+
+
+try:
+    limiter = Limiter(
+        key_func=get_api_key_or_ip,
+        default_limits=["60/minute"],  # Tier Free
+        storage_uri=_get_storage_uri(),
+        strategy="fixed-window",
+    )
+except Exception as e:
+    # Fallback para memória se Redis falhar
+    logger.warning(f"Redis não disponível para rate limiter, usando memória: {e}")
+    limiter = Limiter(
+        key_func=get_api_key_or_ip,
+        default_limits=["60/minute"],
+        storage_uri="memory://",
+        strategy="fixed-window",
+    )
 
 
 # Rate limits por tier
