@@ -29,12 +29,13 @@ RUN useradd -m -u 10001 -s /usr/sbin/nologin appuser && \
     chown -R appuser:appuser /app
 USER appuser
 
-# Porta dinâmica para Railway (usa $PORT)
+# Variáveis de ambiente padrão
 ENV PORT=8000 \
     LOG_LEVEL=INFO \
     CACHE_TTL_SECONDS=3600
 
-EXPOSE $PORT
+EXPOSE 8000
 
-# Usar shell form para expandir $PORT
-CMD uvicorn src.api.app:app --host 0.0.0.0 --port $PORT
+# Railway usa startCommand do railway.json
+# Fallback para execução local
+CMD ["sh", "-c", "uvicorn src.api.app:app --host 0.0.0.0 --port ${PORT:-8000}"]
