@@ -20,6 +20,7 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Código-fonte
 COPY src ./src
+COPY run.py ./
 COPY README.md ./
 
 # Diretório de dados (parquet) será montado por volume
