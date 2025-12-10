@@ -17,7 +17,7 @@
 1. Acesse [railway.app](https://railway.app)
 2. Clique em **New Project**
 3. Selecione **Deploy from GitHub repo**
-4. Escolha o repositório `banco-dados-techdengue`
+4. Escolha o repositório `  `
 
 ### 1.2 Via CLI
 
@@ -96,7 +96,7 @@ rediss://default:TOKEN@HOST.upstash.io:6379
 ### Health Check
 
 ```bash
-curl https://techdengue-api.railway.app/health
+curl https://banco-dados-techdengue-production.up.railway.app/health
 ```
 
 **Resposta esperada:**
@@ -110,7 +110,7 @@ curl https://techdengue-api.railway.app/health
 
 ### Swagger UI
 
-Acesse: https://techdengue-api.railway.app/docs
+Acesse: https://banco-dados-techdengue-production.up.railway.app/docs
 
 ---
 
@@ -119,13 +119,13 @@ Acesse: https://techdengue-api.railway.app/docs
 No Netlify, adicione a variável de ambiente:
 
 ```
-VITE_API_BASE_URL=https://techdengue-api.railway.app
+VITE_API_BASE_URL=https://banco-dados-techdengue-production.up.railway.app
 ```
 
 Ou atualize o arquivo `.env.production` no frontend:
 
 ```env
-VITE_API_BASE_URL=https://techdengue-api.railway.app
+VITE_API_BASE_URL=https://banco-dados-techdengue-production.up.railway.app
 ```
 
 ---

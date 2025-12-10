@@ -1,13 +1,15 @@
 # 🦟 TechDengue - Sistema de Dados e Analytics
 
 [![Deploy Frontend](https://img.shields.io/badge/Frontend-Netlify-00C7B7?logo=netlify)](https://banco-dados-techdengue.netlify.app)
+[![Deploy API](https://img.shields.io/badge/API-Railway-0B0D0E?logo=railway)](https://banco-dados-techdengue-production.up.railway.app)
 [![Backend](https://img.shields.io/badge/Backend-FastAPI-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
 [![Python](https://img.shields.io/badge/Python-3.14-3776AB?logo=python)](https://www.python.org/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react)](https://react.dev/)
 
 > Sistema completo de dados integrados do Projeto TechDengue para monitoramento e análise de atividades de controle de dengue em Minas Gerais.
 
-**🌐 Produção:** https://banco-dados-techdengue.netlify.app
+**🌐 Frontend:** https://banco-dados-techdengue.netlify.app  
+**🔌 API:** https://banco-dados-techdengue-production.up.railway.app
 
 ---
 
@@ -61,7 +63,7 @@ O TechDengue é uma plataforma de dados para:
 
 ### Infraestrutura
 - **Netlify** - Deploy do frontend
-- **Railway** - Deploy da API (configurado)
+- **Railway** - Deploy da API (https://banco-dados-techdengue-production.up.railway.app)
 - **GitHub Actions** - CI/CD
 
 ---
@@ -178,8 +180,9 @@ banco-dados-techdengue/
 
 ### Base URL
 
+- **Produção:** `https://banco-dados-techdengue-production.up.railway.app`
 - **Local:** `http://localhost:8000`
-- **Documentação:** `http://localhost:8000/docs` (Swagger UI)
+- **Documentação:** `https://banco-dados-techdengue-production.up.railway.app/docs` (Swagger UI)
 
 ### Principais Endpoints
 

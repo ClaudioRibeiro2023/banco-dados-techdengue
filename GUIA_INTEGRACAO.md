@@ -7,7 +7,7 @@
 | Ambiente | URL | Status |
 |----------|-----|--------|
 | **Frontend (Dashboard)** | https://banco-dados-techdengue.netlify.app | 🟢 Produção |
-| **API (Backend)** | https://techdengue-api.railway.app | ⚙️ Configuração |
+| **API (Backend)** | https://banco-dados-techdengue-production.up.railway.app | 🟢 Produção |
 | **API (Local)** | http://localhost:8000 | 🔧 Desenvolvimento |
 
 ---
