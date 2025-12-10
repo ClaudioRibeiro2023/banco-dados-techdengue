@@ -144,10 +144,12 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
   - Testar `WeatherService._calcular_favorabilidade()`
   - Testar `WeatherService.analyze_dengue_risk()`
 
-- [ ] [P1] **2.5** Criar `tests/services/test_risk_analyzer.py`:
+- [x] [P1] **2.5** Criar `tests/services/test_risk_analyzer.py`:
+  - ✅ Concluído em 2025-12-10 (19 testes)
   - Testar `RiskAnalyzer.analyze_risk()`
 
-- [ ] [P1] **2.6** Expandir testes de integração para `/facts`:
+- [x] [P1] **2.6** Expandir testes de integração para routers:
+  - ✅ Concluído em 2025-12-10 (20 testes em test_routers.py)
   - Testar paginação
   - Testar filtros
   - Testar exports
@@ -184,11 +186,13 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
       docker build -t techdengue-api .
   ```
 
-- [ ] [P1] **3.2** Otimizar `Dockerfile`:
+- [x] [P1] **3.2** Otimizar `Dockerfile`:
+  - ✅ Concluído em 2025-12-10 (multi-stage build, healthcheck)
   - Adicionar cache de pip com `--mount=type=cache`
   - Usar multi-stage build otimizado
 
-- [ ] [P2] **3.3** Revisar `.dockerignore`:
+- [x] [P2] **3.3** Revisar `.dockerignore`:
+  - ✅ Concluído em 2025-12-10
   - Garantir que exclui: `__pycache__`, `.git`, `venv/`, `node_modules/`
 
 - [ ] [P2] **3.4** Configurar hot-reload para desenvolvimento:
@@ -204,7 +208,8 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
   - Alerta para erros 5xx > 5/hora
   - Alerta para latência p95 > 2s
 
-- [ ] [P1] **4.2** Melhorar health check `/health`:
+- [x] [P1] **4.2** Melhorar health check `/health`:
+  - ✅ Concluído em 2025-12-10 (verifica Redis, retorna issues)
   - Verificar conexão Redis
   - Verificar existência dos Parquet files
   - Retornar `ok: false` se dependências falharem
@@ -223,7 +228,8 @@ Este arquivo acompanha o plano de melhorias faseado descrito em `docs/PROPOSTA_A
 
 > **Objetivo:** Facilitar contribuição e manutenção.
 
-- [ ] [P1] **5.1** Criar `CONTRIBUTING.md`:
+- [x] [P1] **5.1** Criar `CONTRIBUTING.md`:
+  - ✅ Concluído em 2025-12-10
   - Guia de setup local
   - Padrões de código
   - Processo de PR
@@ -265,11 +271,11 @@ Use este arquivo como checklist vivo. Adicione notas rápidas abaixo dos itens c
 |------|-------|------------|---|
 | 0 | 6 | 4 | 67% |
 | 1 | 11 | 8 | 73% |
-| 2 | 9 | 4 | 44% |
-| 3 | 4 | 0 | 0% |
-| 4 | 5 | 0 | 0% |
-| 5 | 7 | 0 | 0% |
-| **Total** | **42** | **16** | **38%** |
+| 2 | 9 | 6 | 67% |
+| 3 | 4 | 2 | 50% |
+| 4 | 5 | 1 | 20% |
+| 5 | 7 | 1 | 14% |
+| **Total** | **42** | **22** | **52%** |
 
 ---
 
