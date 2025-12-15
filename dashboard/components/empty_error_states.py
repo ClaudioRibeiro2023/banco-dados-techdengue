@@ -299,6 +299,7 @@ def create_spinner(size: str = "md", color: str = "primary", label: str = "Carre
                     fill="none" 
                     stroke-width="5"></circle>
         </svg>
-        <span class="spinner-label">{label}</span>
+        <span class="spinner-label" aria-hidden="true">{label}</span>
+        <span class="sr-only">{label}</span>
     </div>
     '''

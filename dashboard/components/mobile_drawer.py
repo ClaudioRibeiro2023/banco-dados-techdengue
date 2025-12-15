@@ -35,6 +35,7 @@ def create_mobile_drawer(items: list, active_page: str = "") -> str:
         items_html += f'''
         <a href="{item['path']}" 
            class="drawer-item {active_class}"
+           style="min-height:44px;"
            {aria_current}
            role="menuitem">
             <span class="drawer-icon" aria-hidden="true">{item['icon']}</span>

@@ -15,6 +15,14 @@ from starlette.responses import JSONResponse
 from loguru import logger
 
 
+try:
+    import redis
+    _REDIS_AVAILABLE = True
+except ImportError:
+    redis = None
+    _REDIS_AVAILABLE = False
+
+
 def get_api_key_or_ip(request: Request) -> str:
     """
     Extrai identificador para rate limiting.
@@ -30,9 +38,26 @@ def get_api_key_or_ip(request: Request) -> str:
 
 
 # Configuração do limiter
+def _mask_redis_url(url: str) -> str:
+    if not url:
+        return url
+    if "@" not in url:
+        return url
+    prefix, host_part = url.rsplit("@", 1)
+    if "://" not in prefix:
+        return url
+    scheme, creds = prefix.split("://", 1)
+    if ":" in creds:
+        user, _ = creds.split(":", 1)
+        creds = f"{user}:***"
+    else:
+        creds = "***"
+    return f"{scheme}://{creds}@{host_part}"
+
+
 def _get_storage_uri() -> str:
     """Determina o storage URI para o rate limiter."""
-    redis_url = os.getenv("REDIS_URL", "")
+    redis_url = (os.getenv("REDIS_URL", "") or "").strip()
     
     # Em ambiente de teste ou dev sem Redis, usar memória
     if not redis_url or os.getenv("TESTING", "").lower() == "true":
@@ -40,7 +65,22 @@ def _get_storage_uri() -> str:
     
     # Verificar se é URL Upstash válida
     if redis_url.startswith("redis://") or redis_url.startswith("rediss://"):
-        return redis_url
+        if not _REDIS_AVAILABLE:
+            return "memory://"
+        try:
+            client = redis.from_url(
+                redis_url,
+                decode_responses=True,
+                socket_connect_timeout=0.5,
+                socket_timeout=0.5,
+            )
+            client.ping()
+            return redis_url
+        except Exception as e:
+            logger.warning(
+                f"Redis indisponível para rate limiter ({_mask_redis_url(redis_url)}), usando memória: {e}"
+            )
+            return "memory://"
     
     return "memory://"
 
