@@ -122,3 +122,27 @@ app.include_router(facts_router)
 app.include_router(weather_router)
 app.include_router(gis_router)
 app.include_router(admin_router)
+
+
+@app.get("/", tags=["Health"], summary="Root endpoint")
+async def root():
+    """
+    Endpoint raiz da API.
+    Retorna informações básicas e links úteis.
+    """
+    return {
+        "name": "TechDengue API",
+        "version": Config.VERSION,
+        "status": "online",
+        "docs": "/docs",
+        "redoc": "/redoc",
+        "health": "/health",
+        "endpoints": {
+            "facts": "/facts",
+            "dengue": "/dengue",
+            "municipios": "/municipios",
+            "weather": "/api/v1/weather",
+            "gis": "/gis/banco",
+            "monitor": "/monitor",
+        },
+    }
