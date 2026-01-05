@@ -15,6 +15,9 @@ from loguru import logger
 from src.core.cache import cached, get_cache
 
 
+_API_KEY_FROM_ENV = object()
+
+
 class WeatherData(BaseModel):
     """Dados climáticos atuais."""
     cidade: str
@@ -103,8 +106,11 @@ class WeatherService:
         "ipatinga": "Ipatinga",
     }
     
-    def __init__(self, api_key: Optional[str] = None):
-        self.api_key = api_key or os.getenv("OPENWEATHER_API_KEY")
+    def __init__(self, api_key: Optional[str] = _API_KEY_FROM_ENV):
+        if api_key is _API_KEY_FROM_ENV:
+            self.api_key = os.getenv("OPENWEATHER_API_KEY")
+        else:
+            self.api_key = api_key
         self._client = httpx.AsyncClient(timeout=10.0)
         
         if not self.api_key:
