@@ -58,6 +58,9 @@ def _mask_redis_url(url: str) -> str:
 def _get_storage_uri() -> str:
     """Determina o storage URI para o rate limiter."""
     redis_url = (os.getenv("REDIS_URL", "") or "").strip()
+    storage_pref = (os.getenv("RATE_LIMIT_STORAGE", "") or "").strip().lower()
+    if storage_pref != "redis":
+        return "memory://"
     
     # Em ambiente de teste ou dev sem Redis, usar memória
     if not redis_url or os.getenv("TESTING", "").lower() == "true":
