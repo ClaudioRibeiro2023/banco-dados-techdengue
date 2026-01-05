@@ -4,7 +4,8 @@ import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 /**
  * API Client configuration
  */
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://techdengue-api.railway.app'
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || 'https://banco-dados-techdengue-production.up.railway.app'
 const API_TIMEOUT = 30000 // 30 seconds
 
 /**
