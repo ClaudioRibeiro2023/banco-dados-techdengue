@@ -13,9 +13,11 @@ $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $dotenvPath = Join-Path $root '.env'
 $sqlInitPath = Join-Path $root 'scripts/sql/init_warehouse.sql'
+$sqlGisInitPath = Join-Path $root 'scripts/sql/init_gis.sql'
+$sqlGisSchemaPath = Join-Path $root 'scripts/sql/gis_schema.sql'
 
 function Write-Section($title) {
-  Write-Host "`n==== $title ====\n" -ForegroundColor Cyan
+  Write-Host "`n==== $title ====`n" -ForegroundColor Cyan
 }
 
 function Confirm-Step($message, [string]$default='Y') {
@@ -75,6 +77,14 @@ if ($missingWh.Count -gt 0) {
   if (-not (Confirm-Step 'Continuar mesmo assim? (você pode inserir manualmente no provedor/psql)' 'N')) { throw 'Abortado pelo usuário' }
 }
 
+$neededGis = @('GIS_DB_HOST','GIS_DB_NAME','GIS_DB_USERNAME','GIS_DB_PASSWORD')
+$missingGis = @()
+foreach ($k in $neededGis) { if (-not $envs.ContainsKey($k)) { $missingGis += $k } }
+if ($missingGis.Count -gt 0) {
+  Write-Warning ("Variáveis do GIS ausentes no .env: " + ($missingGis -join ', '))
+  if (-not (Confirm-Step 'Continuar mesmo assim? (você pode inserir manualmente no provedor/psql)' 'N')) { throw 'Abortado pelo usuário' }
+}
+
 if (-not (Confirm-Step 'Prosseguir para A1 (opcional) criação de roles/usuário no Warehouse?' 'N')) {
   Write-Host 'Pulando A1.' -ForegroundColor Yellow
 } else {
@@ -93,14 +103,35 @@ if (-not (Confirm-Step 'Prosseguir para A1 (opcional) criação de roles/usuári
   }
 }
 
+if (-not (Confirm-Step 'Prosseguir para A1-GIS (opcional) bootstrap do banco GIS (roles + schema)?' 'N')) {
+  Write-Host 'Pulando A1-GIS.' -ForegroundColor Yellow
+} else {
+  Write-Section 'A1-GIS: Bootstrap do banco GIS (roles/usuario + schema)'
+  if (-not (Test-Path $sqlGisInitPath)) { throw "Script SQL não encontrado: $sqlGisInitPath" }
+  if (-not (Test-Path $sqlGisSchemaPath)) { throw "Script SQL não encontrado: $sqlGisSchemaPath" }
+  if (-not (Get-Command 'psql' -ErrorAction SilentlyContinue)) {
+    Write-Warning 'psql não encontrado no PATH. Instale o cliente do PostgreSQL ou rode esta etapa manualmente.'
+  } else {
+    $host = if ($envs.ContainsKey('GIS_DB_HOST')) { $envs['GIS_DB_HOST'] } else { Read-Host 'Host do GIS' }
+    $db = if ($envs.ContainsKey('GIS_DB_NAME')) { $envs['GIS_DB_NAME'] } else { Read-Host 'Database do GIS' }
+    $port = if ($envs.ContainsKey('GIS_DB_PORT')) { $envs['GIS_DB_PORT'] } else { '5432' }
+    $adminUser = Read-Host 'Usuário admin para executar psql (NÃO é td_app)'
+    Write-Host 'O psql solicitará a senha do usuário admin de forma segura.' -ForegroundColor Yellow
+    $args1 = @('-h', $host, '-p', $port, '-U', $adminUser, '-d', $db, '-f', $sqlGisInitPath)
+    Exec 'psql' ($args1 -join ' ')
+    $args2 = @('-h', $host, '-p', $port, '-U', $adminUser, '-d', $db, '-f', $sqlGisSchemaPath)
+    Exec 'psql' ($args2 -join ' ')
+  }
+}
+
 Write-Section 'A2: Ingestão no Warehouse (fato_atividades_techdengue)'
 if (Confirm-Step 'Executar ingestão no Warehouse agora?' 'Y') {
-  Exec 'python' 'gis_cli.py warehouse-ingest'
+  Exec 'python' 'scripts/cli/gis_cli.py warehouse-ingest'
 } else { Write-Host 'Pulando A2.' -ForegroundColor Yellow }
 
 Write-Section 'A3: Validação da tabela (contagem + amostra)'
 if (Confirm-Step 'Validar tabela agora?' 'Y') {
-  Exec 'python' 'gis_cli.py warehouse-validate --sample'
+  Exec 'python' 'scripts/cli/gis_cli.py warehouse-validate --sample'
 } else { Write-Host 'Pulando A3.' -ForegroundColor Yellow }
 
 Write-Section 'A4: Materialização GOLD (analise_integrada)'
