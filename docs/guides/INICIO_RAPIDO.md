@@ -5,9 +5,6 @@
 ### 1️⃣ Instalar Dependências
 
 ```bash
-# Navegue até o diretório do projeto
-cd C:\Users\claud\CascadeProjects\banco-dados-techdengue
-
 # Instale as dependências Python
 pip install -r requirements.txt
 ```
@@ -16,7 +13,7 @@ pip install -r requirements.txt
 
 ```bash
 # Execute a análise exploratória completa
-python exemplo_analise_exploratoria.py
+python scripts/exemplo_analise_exploratoria.py
 ```
 
 **Resultado:** Relatório executivo + 3 gráficos salvos em `visualizacoes/`
@@ -25,7 +22,7 @@ python exemplo_analise_exploratoria.py
 
 ```bash
 # Conecte ao banco PostgreSQL
-python conectar_banco_gis.py
+python scripts/db/conectar_banco_gis.py
 ```
 
 **Resultado:** Exploração interativa do banco de dados GIS
@@ -43,11 +40,11 @@ python conectar_banco_gis.py
 
 ### 🐍 Scripts Python
 
-| Arquivo | O Que Faz |
-|---------|-----------|
-| `analise_estrutura_dados.py` | Analisa estrutura dos arquivos Excel |
-| `conectar_banco_gis.py` | Conecta ao PostgreSQL e explora dados |
-| `exemplo_analise_exploratoria.py` | **PRINCIPAL** - Análise completa com visualizações |
+|Arquivo|O Que Faz|
+|---|---|
+|`scripts/analise_estrutura_dados.py`|Analisa estrutura dos arquivos Excel|
+|`scripts/db/conectar_banco_gis.py`|Conecta ao PostgreSQL e explora dados|
+|`scripts/exemplo_analise_exploratoria.py`|**PRINCIPAL** - Análise completa com visualizações|
 
 ### ⚙️ Configuração
 
@@ -86,17 +83,20 @@ python conectar_banco_gis.py
 ## 📊 Principais Insights (Baseado em Análise Inicial)
 
 ### Dados Epidemiológicos
+
 - **853 municípios** monitorados em Minas Gerais
 - Dados organizados por **semanas epidemiológicas**
 - Histórico completo de **2023 a 2025**
 
 ### Operações TechDengue
+
 - **1.278 atividades** registradas
 - Média de **244 POIs** por atividade
 - Taxa de conversão **POIs → Devolutivas**: ~21%
 - **97,5%** das atividades com link GIS disponível
 
 ### Cobertura
+
 - **624 municípios** com contratos ativos
 - Distribuição por **macrorregiões de saúde**
 - Dados integrados com **população IBGE 2022**
@@ -106,9 +106,11 @@ python conectar_banco_gis.py
 ## 🔥 Análises Prontas para Executar
 
 ### Análise 1: Panorama Geral
+
 ```bash
-python exemplo_analise_exploratoria.py
+python scripts/exemplo_analise_exploratoria.py
 ```
+
 **Gera:**
 - Estatísticas gerais
 - Top 10 municípios (dengue)
@@ -119,9 +121,11 @@ python exemplo_analise_exploratoria.py
 - Relatório executivo (TXT)
 
 ### Análise 2: Estrutura Detalhada
+
 ```bash
-python analise_estrutura_dados.py
+python scripts/analise_estrutura_dados.py
 ```
+
 **Gera:**
 - Dimensões de todas as tabelas
 - Tipos de dados
@@ -130,9 +134,11 @@ python analise_estrutura_dados.py
 - Identificação de campos-chave
 
 ### Análise 3: Exploração Banco GIS
+
 ```bash
-python conectar_banco_gis.py
+python scripts/db/conectar_banco_gis.py
 ```
+
 **Modo Interativo:**
 - Lista tabelas disponíveis
 - Descreve estrutura
@@ -168,14 +174,15 @@ print(f"Total de POIs: {df['POIS'].sum():,}")
 ```python
 import psycopg2
 import pandas as pd
+import os
 
 conn = psycopg2.connect(
-    host='ls-564b587f07ec660b943bc46eeb4d39a79a9eec4d.cul8kgow0o6q.us-east-1.rds.amazonaws.com',
-    port=5432,
-    database='postgres',
-    user='claudio_aero',
-    password='123456',
-    sslmode='require'
+    host=os.getenv('GIS_DB_HOST', 'localhost'),
+    port=int(os.getenv('GIS_DB_PORT', '5432')),
+    database=os.getenv('GIS_DB_NAME', 'postgres'),
+    user=os.getenv('GIS_DB_USERNAME', 'postgres'),
+    password=os.getenv('GIS_DB_PASSWORD', ''),
+    sslmode=os.getenv('GIS_DB_SSL_MODE', 'require')
 )
 
 df = pd.read_sql("SELECT * FROM banco_techdengue LIMIT 5", conn)
@@ -265,13 +272,13 @@ Revise os resultados em:
 
 ## 📚 Recursos de Suporte
 
-| Precisa de... | Consulte... |
-|---------------|-------------|
-| Visão geral | `README.md` |
-| Estrutura técnica | `RESUMO_ANALISE_DADOS.md` |
-| Próximos passos | `GUIA_NAVEGACAO.md` |
-| Início rápido | Este arquivo |
-| Conexão GIS | `base_dados/dados_techdengue/guia-banco-gis.md` |
+|Precisa de...|Consulte...|
+|---|---|
+|Visão geral|`README.md`|
+|Estrutura técnica|`RESUMO_ANALISE_DADOS.md`|
+|Próximos passos|`GUIA_NAVEGACAO.md`|
+|Início rápido|Este arquivo|
+|Conexão GIS|`base_dados/dados_techdengue/guia-banco-gis.md`|
 
 ---
 

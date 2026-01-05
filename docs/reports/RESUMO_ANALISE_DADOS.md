@@ -159,7 +159,7 @@ Três arquivos Excel contendo histórico de casos de dengue por semana epidemiol
 ### 3.1 Informações de Conexão
 
 **Servidor:** AWS RDS PostgreSQL + PostGIS  
-**Host:** `ls-564b587f07ec660b943bc46eeb4d39a79a9eec4d.cul8kgow0o6q.us-east-1.rds.amazonaws.com`  
+**Host:** `<GIS_DB_HOST>`  
 **Porta:** 5432  
 **Database:** postgres  
 **SSL:** Obrigatório
@@ -167,8 +167,8 @@ Três arquivos Excel contendo histórico de casos de dengue por semana epidemiol
 ### 3.2 Credenciais de Acesso (Somente Leitura)
 
 ```
-Usuário: claudio_aero
-Senha: 123456
+Usuário: <GIS_DB_USERNAME>
+Senha: <GIS_DB_PASSWORD>
 Permissões: SELECT apenas (read-only)
 ```
 

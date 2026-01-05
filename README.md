@@ -18,14 +18,14 @@
 
 ## 📋 Índice
 
-- [Visão Geral](#-visão-geral)
-- [Stack Tecnológica](#-stack-tecnológica)
-- [Como Executar](#-como-executar)
-- [Estrutura do Projeto](#-estrutura-do-projeto)
-- [API](#-api)
-- [Testes](#-testes)
-- [Deploy](#-deploy)
-- [Documentação](#-documentação)
+- [Visão Geral](#visão-geral)
+- [Stack Tecnológica](#stack-tecnológica)
+- [Como Executar](#como-executar)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [API](#api)
+- [Testes](#testes)
+- [Deploy](#deploy)
+- [Documentação](#documentação)
 
 ---
 
@@ -52,7 +52,7 @@ O TechDengue é uma plataforma de dados para:
 ## 🛠️ Stack Tecnológica
 
 ### Backend
-- **Python 3.14** + **FastAPI** - API REST
+- **Python 3.11+** + **FastAPI** - API REST
 - **PostgreSQL/PostGIS** - Banco de dados GIS
 - **Redis (Upstash)** - Cache e rate limiting
 - **Pydantic** - Validação de dados
@@ -226,11 +226,24 @@ banco-dados-techdengue/
 | Método | Endpoint | Descrição |
 |--------|----------|-----------|
 | GET | `/health` | Health check |
-| GET | `/api/v1/atividades` | Lista atividades |
-| GET | `/api/v1/municipios` | Lista municípios |
-| GET | `/api/v1/dengue` | Dados epidemiológicos |
-| GET | `/api/v1/analytics/summary` | Resumo analítico |
-| GET | `/api/v1/export/csv` | Export em CSV |
+| GET | `/monitor` | Status consolidado (datasets, métricas e indicadores) |
+| GET | `/quality` | Relatório de qualidade dos dados |
+| GET | `/datasets` | Catálogo de datasets disponíveis |
+| GET | `/api/v1/status` | Status detalhado do sistema |
+| GET | `/facts` | Atividades TechDengue (filtros, paginação e export) |
+| GET | `/facts/summary` | Resumo agregado das atividades |
+| GET | `/dengue` | Dados históricos de dengue (filtros e export) |
+| GET | `/municipios` | Dados dos municípios de MG (filtros e export) |
+| GET | `/gold/analise` | Análise integrada consolidada (camada Gold) |
+| GET | `/api/v1/weather/{cidade}` | Clima atual + índice de favorabilidade para dengue |
+| POST | `/api/v1/risk/analyze` | Análise de risco (IA) |
+| GET | `/api/v1/risk/dashboard` | Dashboard de risco consolidado |
+
+### Endpoints GIS (degradação e modo estrito)
+
+- **`GET /gis/banco`** e **`GET /gis/pois`**:
+  - **Default (graceful)**: quando GIS não está disponível e `GIS_OPTIONAL=true`, retorna **`200`** com lista vazia e headers `X-TechDengue-*` explicando o motivo.
+  - **Modo estrito**: use `?strict=true` para retornar **`503`** quando o GIS não estiver disponível.
 
 ### Exemplo de Uso
 
@@ -239,7 +252,10 @@ banco-dados-techdengue/
 curl http://localhost:8000/health
 
 # Lista atividades (paginado)
-curl "http://localhost:8000/api/v1/atividades?page=1&limit=10"
+curl "http://localhost:8000/facts?limit=10&offset=0"
+
+# Export CSV (exemplo)
+curl -L "http://localhost:8000/facts?format=csv&limit=1000" -o facts.csv
 ```
 
 ---
@@ -316,6 +332,7 @@ docker-compose up
 | [docs/BOOK_DE_TESTES.md](docs/BOOK_DE_TESTES.md) | Book de testes |
 | [docs/architecture/](docs/architecture/) | Documentação de arquitetura |
 | [docs/guides/](docs/guides/) | Guias práticos |
+| [RELATORIO_GERENCIAL_DADOS.md](RELATORIO_GERENCIAL_DADOS.md) | Relatório gerencial consolidado (KPIs, top municípios, evolução mensal) |
 
 ---
 
@@ -328,8 +345,11 @@ Copie `.env.example` para `.env` e configure:
 GIS_DB_HOST=localhost
 GIS_DB_PORT=5432
 GIS_DB_NAME=postgres
-GIS_DB_USER=seu_usuario
+GIS_DB_USERNAME=seu_usuario
 GIS_DB_PASSWORD=sua_senha
+
+# GIS opcional (quando true, /gis/* degrada para lista vazia ao invés de 500)
+GIS_OPTIONAL=true
 
 # Redis (opcional para dev)
 REDIS_URL=redis://localhost:6379

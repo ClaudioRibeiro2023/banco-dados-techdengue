@@ -6,6 +6,25 @@
 
 ---
 
+## 🧭 Comece por aqui (por perfil)
+
+### Executivo (Gestão / stakeholders)
+
+- **[RELATORIO_GERENCIAL_DADOS.md](../RELATORIO_GERENCIAL_DADOS.md)** - KPIs e análise consolidada
+- **[Resumo de Implementação](reports/RESUMO_FINAL_IMPLEMENTACAO.md)** - Entregas realizadas
+
+### Operacional (Deploy / operação / pipeline)
+
+- **[Deploy (guia geral)](../DEPLOY_GUIDE.md)** - Railway/Netlify
+- **[Deploy Railway](DEPLOY_RAILWAY.md)** - Variáveis e verificação de saúde
+- **[Integração com a API](../GUIA_INTEGRACAO.md)** - Base URL, API Keys, exemplos
+
+### Técnico (Dev / dados / arquitetura)
+
+- **[Arquitetura de Dados](architecture/ARQUITETURA_DADOS_DEFINITIVA.md)** - Medallion (Bronze/Silver/Gold)
+- **[Integração GIS](guides/GUIA_INTEGRACAO_GIS.md)** - PostGIS, cache e CLI
+- **[Início Rápido](guides/INICIO_RAPIDO.md)** - Setup local e primeiros comandos
+
 ## 📋 Documentação Principal (Raiz)
 
 | Documento | Descrição | Status |
@@ -82,5 +101,7 @@ Documentação histórica mantida para referência:
 ## 🔗 Acesso Rápido
 
 - **Frontend Produção:** https://banco-dados-techdengue.netlify.app
-- **API Docs (Swagger):** `/docs` na URL da API
+- **API Produção:** https://banco-dados-techdengue-production.up.railway.app
+- **API Docs (Swagger):** https://banco-dados-techdengue-production.up.railway.app/docs
+- **API Health:** https://banco-dados-techdengue-production.up.railway.app/health
 - **Repositório:** https://github.com/ClaudioRibeiro2023/banco-dados-techdengue

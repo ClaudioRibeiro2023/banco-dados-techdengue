@@ -5,6 +5,25 @@
 
 ---
 
+## 🧭 Comece por aqui (por perfil)
+
+### Executivo (Gestão / stakeholders)
+
+1. **[Relatório Gerencial Consolidado](../RELATORIO_GERENCIAL_DADOS.md)** - KPIs e análise gerencial
+2. **[Resumo de Implementação](reports/RESUMO_FINAL_IMPLEMENTACAO.md)** - Entregas realizadas
+
+### Operacional (Deploy / operação)
+
+1. **[Deploy (guia geral)](../DEPLOY_GUIDE.md)** - Railway/Netlify
+2. **[Deploy Railway](DEPLOY_RAILWAY.md)** - Variáveis, verificação e troubleshooting
+3. **[Integração com a API](../GUIA_INTEGRACAO.md)** - Base URL, API Keys, exemplos
+
+### Técnico (Dev / dados / arquitetura)
+
+1. **[Arquitetura de Dados](architecture/ARQUITETURA_DADOS_DEFINITIVA.md)** - Medallion (Bronze/Silver/Gold)
+2. **[Integração GIS](guides/GUIA_INTEGRACAO_GIS.md)** - PostGIS, cache e CLI
+3. **[Início Rápido](guides/INICIO_RAPIDO.md)** - Setup local e primeiros comandos
+
 ## 📖 Índice Geral
 
 Esta pasta contém toda a documentação do projeto organizada por categoria.

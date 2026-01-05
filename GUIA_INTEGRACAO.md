@@ -131,7 +131,7 @@ GET  /api/v1/audit/logs
 
 ```bash
 # Criar nova API Key
-curl -X POST "https://techdengue-api.railway.app/api/v1/keys" \
+curl -X POST "https://banco-dados-techdengue-production.up.railway.app/api/v1/keys" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Minha Aplicação",
@@ -159,7 +159,7 @@ Inclua no header `X-API-Key`:
 
 ```bash
 curl -H "X-API-Key: tk_live_xxxxx" \
-  "https://techdengue-api.railway.app/api/v1/keys"
+  "https://banco-dados-techdengue-production.up.railway.app/api/v1/keys"
 ```
 
 ### 3.5 Tiers de Acesso
@@ -195,24 +195,32 @@ GET /facts?limit=100&offset=0&format=json
 
 | Parâmetro | Tipo | Descrição |
 |-----------|------|-----------|
-| `limit` | int | Máximo de registros (default: 100, max: 10000) |
+| `limit` | int | Máximo de registros (default: 100, max: 1000) |
 | `offset` | int | Offset para paginação |
 | `format` | string | `json`, `csv` ou `parquet` |
-| `q` | string | Busca por município |
-| `fields` | string | Campos específicos (separados por vírgula) |
+| `codigo_ibge` | string | Filtrar por código IBGE |
+| `nomenclatura_atividade` | string | Filtrar por nomenclatura/atividade |
+| `start_date` | date | Data inicial (YYYY-MM-DD) |
+| `end_date` | date | Data final (YYYY-MM-DD) |
+| `sort_by` | string | Ordenar por coluna (se existir) |
+| `order` | string | `asc` ou `desc` |
+| `fields` | string | Campos específicos (separados por vírgula) - aplica para `format` != `json` |
 
 ### 4.3 Casos de Dengue
 
 ```http
-GET /dengue?limit=100&ano=2024
+GET /dengue?limit=100&offset=0&format=json
 ```
 
 | Parâmetro | Tipo | Descrição |
 |-----------|------|-----------|
 | `limit` | int | Máximo de registros |
 | `offset` | int | Offset |
-| `ano` | int | Filtrar por ano |
-| `q` | string | Busca por município |
+| `codigo_ibge` | string | Filtrar por código IBGE |
+| `sort_by` | string | Ordenar por coluna (se existir) |
+| `order` | string | `asc` ou `desc` |
+| `format` | string | `json`, `csv` ou `parquet` |
+| `fields` | string | Campos específicos (separados por vírgula) |
 
 ### 4.4 Municípios
 
@@ -220,7 +228,37 @@ GET /dengue?limit=100&ano=2024
 GET /municipios?limit=100&q=Belo
 ```
 
-### 4.5 Dados Climáticos
+| Parâmetro | Tipo | Descrição |
+|-----------|------|-----------|
+| `limit` | int | Máximo de registros |
+| `offset` | int | Offset |
+| `q` | string | Busca por nome de município |
+| `codigo_ibge` | string | Filtrar por código IBGE |
+| `sort_by` | string | Ordenar por coluna (se existir) |
+| `order` | string | `asc` ou `desc` |
+| `format` | string | `json`, `csv` ou `parquet` |
+| `fields` | string | Campos específicos (separados por vírgula) |
+
+### 4.5 Endpoints GIS (PostGIS)
+
+```http
+GET /gis/banco?limit=100
+GET /gis/pois?limit=100&id_atividade=ATV.01
+```
+
+**Comportamento quando o GIS não está disponível (ex.: sem tabelas, erro de conexão):**
+
+- **Default (graceful)**: se `GIS_OPTIONAL=true`, retorna **`200`** com lista vazia e headers `X-TechDengue-*`.
+- **Modo estrito**: use `?strict=true` para retornar **`503`** com JSON de erro e headers `X-TechDengue-*`.
+
+**Headers de observabilidade:**
+
+- `X-TechDengue-Data-Available`: `true|false`
+- `X-TechDengue-Reason`: motivo técnico (ex.: `gis_banco_unavailable`)
+- `X-TechDengue-Message`: mensagem resumida
+- `X-TechDengue-Strict`: presente como `true` quando `strict=true`
+
+### 4.6 Dados Climáticos
 
 ```http
 GET /api/v1/weather/{cidade}
@@ -228,7 +266,7 @@ GET /api/v1/weather/{cidade}
 
 **Exemplo:**
 ```bash
-curl "https://techdengue-api.railway.app/api/v1/weather/Belo%20Horizonte"
+curl "https://banco-dados-techdengue-production.up.railway.app/api/v1/weather/Belo%20Horizonte"
 ```
 
 **Resposta:**
@@ -259,7 +297,7 @@ GET /api/v1/weather/{cidade}/risk
 ```
 Retorna análise de risco baseada em condições climáticas.
 
-### 4.6 Análise de Risco com IA
+### 4.7 Análise de Risco com IA
 
 ```http
 POST /api/v1/risk/analyze
@@ -312,7 +350,7 @@ GET /api/v1/risk/dashboard
 ```
 Dashboard consolidado de risco regional.
 
-### 4.7 Administração
+### 4.8 Administração
 
 ```http
 GET /api/v1/cache/stats
@@ -359,7 +397,7 @@ from techdengue import TechDengueClient
 
 # Inicializar
 client = TechDengueClient(
-    base_url="https://techdengue-api.railway.app",
+    base_url="https://banco-dados-techdengue-production.up.railway.app",
     api_key="tk_live_xxxxx"  # opcional
 )
 
@@ -407,21 +445,33 @@ result = asyncio.run(main())
 ### 6.1 Obter Dados de Dengue (JSON)
 
 ```bash
-curl -s "https://techdengue-api.railway.app/dengue?limit=10&ano=2024" \
-  | jq '.data[].municipio'
+curl -s "https://banco-dados-techdengue-production.up.railway.app/dengue?limit=10&offset=0" \
+  | jq '.items[].municipio'
 ```
 
 ### 6.2 Exportar para CSV
 
 ```bash
-curl -s "https://techdengue-api.railway.app/facts?format=csv&limit=1000" \
+curl -s "https://banco-dados-techdengue-production.up.railway.app/facts?format=csv&limit=1000" \
   -o atividades.csv
 ```
 
-### 6.3 Análise de Risco
+### 6.3 Consultar GIS (graceful vs strict)
 
 ```bash
-curl -X POST "https://techdengue-api.railway.app/api/v1/risk/analyze" \
+# Default (graceful): se GIS_OPTIONAL=true e o GIS estiver indisponível, retorna 200 + []
+curl -i "https://banco-dados-techdengue-production.up.railway.app/gis/banco?limit=10"
+
+# Strict: retorna 503 + JSON de erro
+curl -i "https://banco-dados-techdengue-production.up.railway.app/gis/banco?limit=10&strict=true"
+```
+
+Observe os headers `X-TechDengue-*` na resposta.
+
+### 6.4 Análise de Risco
+
+```bash
+curl -X POST "https://banco-dados-techdengue-production.up.railway.app/api/v1/risk/analyze" \
   -H "Content-Type: application/json" \
   -d '{
     "municipio": "Contagem",
@@ -431,10 +481,10 @@ curl -X POST "https://techdengue-api.railway.app/api/v1/risk/analyze" \
   }'
 ```
 
-### 6.4 Dashboard de Risco
+### 6.5 Dashboard de Risco
 
 ```bash
-curl -s "https://techdengue-api.railway.app/api/v1/risk/dashboard" \
+curl -s "https://banco-dados-techdengue-production.up.railway.app/api/v1/risk/dashboard" \
   | jq '{
     total: .total_cidades,
     criticos: .resumo.critico,
@@ -456,7 +506,7 @@ import time
 WEBHOOK_URL = "https://seu-sistema.com/webhook/dengue"
 
 def verificar_alertas():
-    response = requests.get("https://techdengue-api.railway.app/api/v1/risk/dashboard")
+    response = requests.get("https://banco-dados-techdengue-production.up.railway.app/api/v1/risk/dashboard")
     data = response.json()
     
     if data.get("alerta"):
@@ -525,7 +575,7 @@ X-RateLimit-Reset: 1702159800
 ### 9.2 Verificar Cache
 
 ```bash
-curl "https://techdengue-api.railway.app/api/v1/cache/stats"
+curl "https://banco-dados-techdengue-production.up.railway.app/api/v1/cache/stats"
 ```
 
 ```json
@@ -544,11 +594,11 @@ curl "https://techdengue-api.railway.app/api/v1/cache/stats"
 
 ```bash
 # Limpar cache de clima
-curl -X POST "https://techdengue-api.railway.app/api/v1/cache/clear?pattern=weather" \
+curl -X POST "https://banco-dados-techdengue-production.up.railway.app/api/v1/cache/clear?pattern=weather" \
   -H "X-API-Key: tk_xxxxx"
 
 # Limpar todo o cache
-curl -X POST "https://techdengue-api.railway.app/api/v1/cache/clear" \
+curl -X POST "https://banco-dados-techdengue-production.up.railway.app/api/v1/cache/clear" \
   -H "X-API-Key: tk_xxxxx"
 ```
 
@@ -606,12 +656,12 @@ except TechDengueError as e:
 
 **URL de Dados:**
 ```
-https://techdengue-api.railway.app/gold?format=csv&limit=10000
+https://banco-dados-techdengue-production.up.railway.app/gold?format=csv&limit=10000
 ```
 
 **Configuração no Power BI:**
 1. Obter Dados > Web
-2. URL: `https://techdengue-api.railway.app/gold?format=csv`
+2. URL: `https://banco-dados-techdengue-production.up.railway.app/gold?format=csv`
 3. Atualização: Diária
 
 ### 11.2 Sistema de Alerta por Email (Python)
@@ -643,7 +693,7 @@ enviar_alerta(dashboard)
 
 ```typescript
 // api.ts
-const BASE_URL = 'https://techdengue-api.railway.app';
+const BASE_URL = 'https://banco-dados-techdengue-production.up.railway.app';
 
 export async function getWeather(cidade: string) {
   const response = await fetch(`${BASE_URL}/api/v1/weather/${cidade}`);
@@ -720,9 +770,9 @@ populacao, area_km2, latitude, longitude
 
 ## 📞 Suporte
 
-- **Documentação Swagger:** https://techdengue-api.railway.app/docs
-- **Documentação ReDoc:** https://techdengue-api.railway.app/redoc
-- **Status da API:** https://techdengue-api.railway.app/health
+- **Documentação Swagger:** https://banco-dados-techdengue-production.up.railway.app/docs
+- **Documentação ReDoc:** https://banco-dados-techdengue-production.up.railway.app/redoc
+- **Status da API:** https://banco-dados-techdengue-production.up.railway.app/health
 
 ---
 

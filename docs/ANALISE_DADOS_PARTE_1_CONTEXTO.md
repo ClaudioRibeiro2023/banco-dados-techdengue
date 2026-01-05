@@ -197,7 +197,7 @@ Outros:
 ### 3. Dados Geoespaciais (PostgreSQL + PostGIS)
 
 **Host:** AWS RDS (us-east-1)  
-**Usuário read-only:** claudio_aero  
+**Usuário read-only:** <GIS_DB_USERNAME>  
 **Tabelas:** banco_techdengue, planilha_campo
 
 #### Tabela: banco_techdengue

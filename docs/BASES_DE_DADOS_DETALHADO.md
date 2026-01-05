@@ -166,16 +166,16 @@ df_ibge = pd.read_excel(
 
 ### Conexão
 
-**Host:** `ls-564b587f07ec660b943bc46eeb4d39a79a9eec4d.cul8kgow0o6q.us-east-1.rds.amazonaws.com`  
-**Port:** 5432  
-**Database:** `postgres`  
-**User:** `claudio_aero`  
-**Password:** `123456`  
+**Host:** `<GIS_DB_HOST>`  
+**Port:** `<GIS_DB_PORT>`  
+**Database:** `<GIS_DB_NAME>`  
+**User:** `<GIS_DB_USERNAME>`  
+**Password:** `<GIS_DB_PASSWORD>`  
 **SSL:** Obrigatório
 
 **Connection String:**
 ```
-postgresql://claudio_aero:123456@ls-564b587f07ec660b943bc46eeb4d39a79a9eec4d.cul8kgow0o6q.us-east-1.rds.amazonaws.com:5432/postgres?sslmode=require
+postgresql://<GIS_DB_USERNAME>:<GIS_DB_PASSWORD>@<GIS_DB_HOST>:<GIS_DB_PORT>/<GIS_DB_NAME>?sslmode=require
 ```
 
 ### TABELA 1: banco_techdengue
@@ -196,14 +196,15 @@ categoria (VARCHAR)
 ```python
 import psycopg2
 import pandas as pd
+import os
 
 conn = psycopg2.connect(
-    host='ls-564b587f07ec660b943bc46eeb4d39a79a9eec4d.cul8kgow0o6q.us-east-1.rds.amazonaws.com',
-    port=5432,
-    database='postgres',
-    user='claudio_aero',
-    password='123456',
-    sslmode='require'
+    host=os.getenv('GIS_DB_HOST', 'localhost'),
+    port=int(os.getenv('GIS_DB_PORT', '5432')),
+    database=os.getenv('GIS_DB_NAME', 'postgres'),
+    user=os.getenv('GIS_DB_USERNAME', 'postgres'),
+    password=os.getenv('GIS_DB_PASSWORD', ''),
+    sslmode=os.getenv('GIS_DB_SSL_MODE', 'require')
 )
 
 query = "SELECT * FROM banco_techdengue LIMIT 100"
@@ -362,13 +363,14 @@ def integrar_todas_bases():
     
     # 2. Carregar dados GIS
     import psycopg2
+    import os
     conn = psycopg2.connect(
-        host='ls-564b587f07ec660b943bc46eeb4d39a79a9eec4d.cul8kgow0o6q.us-east-1.rds.amazonaws.com',
-        port=5432,
-        database='postgres',
-        user='claudio_aero',
-        password='123456',
-        sslmode='require'
+        host=os.getenv('GIS_DB_HOST', 'localhost'),
+        port=int(os.getenv('GIS_DB_PORT', '5432')),
+        database=os.getenv('GIS_DB_NAME', 'postgres'),
+        user=os.getenv('GIS_DB_USERNAME', 'postgres'),
+        password=os.getenv('GIS_DB_PASSWORD', ''),
+        sslmode=os.getenv('GIS_DB_SSL_MODE', 'require')
     )
     df_gis = pd.read_sql(
         "SELECT codigo_ibge, COUNT(*) as registros_gis FROM banco_techdengue GROUP BY codigo_ibge",
@@ -595,11 +597,11 @@ library(flexdashboard)
 
 ```sql
 -- Conectar via DBeaver
--- Host: ls-564b587f07ec660b943bc46eeb4d39a79a9eec4d.cul8kgow0o6q.us-east-1.rds.amazonaws.com
--- Port: 5432
--- Database: postgres
--- Username: claudio_aero
--- Password: 123456
+-- Host: <GIS_DB_HOST>
+-- Port: <GIS_DB_PORT>
+-- Database: <GIS_DB_NAME>
+-- Username: <GIS_DB_USERNAME>
+-- Password: <GIS_DB_PASSWORD>
 -- SSL: require
 
 -- Consultas

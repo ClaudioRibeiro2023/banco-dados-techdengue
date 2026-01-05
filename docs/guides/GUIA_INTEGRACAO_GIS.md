@@ -100,7 +100,7 @@ banco-dados-techdengue/
 ### 1. Testar Conexão
 
 ```bash
-python gis_cli.py test-connection
+python scripts/cli/gis_cli.py test-connection
 ```
 
 **Output esperado:**
@@ -111,34 +111,34 @@ python gis_cli.py test-connection
 
 ✅ Conexão bem-sucedida!
 
-Host: ls-564b587f07ec660b943bc46eeb4d39a79a9eec4d.cul8kgow0o6q.us-east-1.rds.amazonaws.com
-Database: postgres
-Usuário: claudio_aero
+Host: <GIS_DB_HOST>
+Database: <GIS_DB_NAME>
+Usuário: <GIS_DB_USERNAME>
 ```
 
 ### 2. Sincronizar Dados
 
 ```bash
 # Sincronizar todas as tabelas
-python gis_cli.py sync
+python scripts/cli/gis_cli.py sync
 
 # Sincronizar tabela específica
-python gis_cli.py sync --table planilha_campo
+python scripts/cli/gis_cli.py sync --table planilha_campo
 
 # Forçar sincronização (ignorar cache)
-python gis_cli.py sync --force
+python scripts/cli/gis_cli.py sync --force
 ```
 
 ### 3. Ver Estatísticas
 
 ```bash
-python gis_cli.py stats
+python scripts/cli/gis_cli.py stats
 ```
 
 ### 4. Verificar Status da Sincronização
 
 ```bash
-python gis_cli.py sync-status
+python scripts/cli/gis_cli.py sync-status
 ```
 
 ---
@@ -249,65 +249,65 @@ plt.show()
 ### test-connection
 Testa conexão com banco de dados
 ```bash
-python gis_cli.py test-connection
+python scripts/cli/gis_cli.py test-connection
 ```
 
 ### table-info
 Mostra informações sobre uma tabela
 ```bash
-python gis_cli.py table-info banco_techdengue
-python gis_cli.py table-info planilha_campo
+python scripts/cli/gis_cli.py table-info banco_techdengue
+python scripts/cli/gis_cli.py table-info planilha_campo
 ```
 
 ### stats
 Exibe estatísticas das tabelas
 ```bash
-python gis_cli.py stats
+python scripts/cli/gis_cli.py stats
 ```
 
 ### sync
 Sincroniza dados do servidor
 ```bash
 # Todas as tabelas
-python gis_cli.py sync
+python scripts/cli/gis_cli.py sync
 
 # Tabela específica
-python gis_cli.py sync --table planilha_campo
+python scripts/cli/gis_cli.py sync --table planilha_campo
 
 # Forçar sincronização
-python gis_cli.py sync --force
+python scripts/cli/gis_cli.py sync --force
 ```
 
 ### sync-status
 Mostra status da sincronização
 ```bash
-python gis_cli.py sync-status
+python scripts/cli/gis_cli.py sync-status
 ```
 
 ### query
 Executa query personalizada
 ```bash
 # Query simples
-python gis_cli.py query "SELECT COUNT(*) FROM planilha_campo"
+python scripts/cli/gis_cli.py query "SELECT COUNT(*) FROM planilha_campo"
 
 # Com limite de linhas
-python gis_cli.py query "SELECT * FROM planilha_campo" --limit 10
+python scripts/cli/gis_cli.py query "SELECT * FROM planilha_campo" --limit 10
 
 # Salvar resultado
-python gis_cli.py query "SELECT * FROM planilha_campo" --output resultado.csv
+python scripts/cli/gis_cli.py query "SELECT * FROM planilha_campo" --output resultado.csv
 ```
 
 ### export
 Exporta dados para arquivo
 ```bash
 # CSV
-python gis_cli.py export planilha_campo dados_pois.csv
+python scripts/cli/gis_cli.py export planilha_campo dados_pois.csv
 
 # Excel
-python gis_cli.py export planilha_campo dados_pois.xlsx
+python scripts/cli/gis_cli.py export planilha_campo dados_pois.xlsx
 
 # Parquet
-python gis_cli.py export banco_techdengue dados_banco.parquet
+python scripts/cli/gis_cli.py export banco_techdengue dados_banco.parquet
 ```
 
 ---
@@ -320,11 +320,11 @@ Crie arquivo `.env` na raiz do projeto:
 
 ```env
 # Banco de Dados GIS
-GIS_DB_HOST=ls-564b587f07ec660b943bc46eeb4d39a79a9eec4d.cul8kgow0o6q.us-east-1.rds.amazonaws.com
+GIS_DB_HOST=seu_host
 GIS_DB_PORT=5432
 GIS_DB_NAME=postgres
-GIS_DB_USERNAME=claudio_aero
-GIS_DB_PASSWORD=123456
+GIS_DB_USERNAME=seu_usuario
+GIS_DB_PASSWORD=sua_senha
 GIS_DB_SSL_MODE=require
 
 # Cache
@@ -430,7 +430,7 @@ while True:
 ### Cache desatualizado
 **Solução:** Forçar sincronização
 ```bash
-python gis_cli.py sync --force
+python scripts/cli/gis_cli.py sync --force
 ```
 
 ### Queries lentas

@@ -17,7 +17,7 @@
 1. Acesse [railway.app](https://railway.app)
 2. Clique em **New Project**
 3. Selecione **Deploy from GitHub repo**
-4. Escolha o repositório `  `
+4. Escolha o repositório `banco-dados-techdengue`
 
 ### 1.2 Via CLI
 
@@ -48,7 +48,7 @@ No dashboard do Railway, adicione as seguintes variáveis:
 | `GIS_DB_HOST` | Host do PostgreSQL | `ls-xxx.rds.amazonaws.com` |
 | `GIS_DB_PORT` | Porta do banco | `5432` |
 | `GIS_DB_NAME` | Nome do banco | `postgres` |
-| `GIS_DB_USERNAME` | Usuário | `claudio_aero` |
+| `GIS_DB_USERNAME` | Usuário | `<seu_usuario>` |
 | `GIS_DB_PASSWORD` | Senha | `***` |
 | `GIS_DB_SSL_MODE` | Modo SSL | `require` |
 

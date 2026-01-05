@@ -51,7 +51,7 @@ Variáveis obrigatórias de leitura (GIS oficial – somente leitura):
 GIS_DB_HOST=<host_rds_oficial>
 GIS_DB_PORT=5432
 GIS_DB_NAME=postgres
-GIS_DB_USERNAME=claudio_aero
+GIS_DB_USERNAME=<gis_ro_user>
 GIS_DB_PASSWORD=<senha_ro>
 GIS_DB_SSL_MODE=require
 ```
