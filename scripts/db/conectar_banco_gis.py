@@ -2,6 +2,8 @@
 Script para conectar ao banco GIS PostgreSQL e explorar sua estrutura
 """
 
+import os
+import getpass
 import psycopg2
 from psycopg2 import sql
 import pandas as pd
@@ -9,18 +11,25 @@ from datetime import datetime
 
 # Configurações de conexão
 DB_CONFIG = {
-    'host': 'ls-564b587f07ec660b943bc46eeb4d39a79a9eec4d.cul8kgow0o6q.us-east-1.rds.amazonaws.com',
-    'port': 5432,
-    'database': 'postgres',
-    'user': 'claudio_aero',
-    'password': '123456',
-    'sslmode': 'require'
+    'host': os.getenv('GIS_DB_HOST', 'localhost'),
+    'port': int(os.getenv('GIS_DB_PORT', '5432')),
+    'database': os.getenv('GIS_DB_NAME', 'postgres'),
+    'user': os.getenv('GIS_DB_USERNAME', 'postgres'),
+    'password': os.getenv('GIS_DB_PASSWORD', ''),
+    'sslmode': os.getenv('GIS_DB_SSL_MODE', 'require'),
 }
+
+
+def _get_db_config() -> dict:
+    config = dict(DB_CONFIG)
+    if not config.get('password'):
+        config['password'] = getpass.getpass('Senha do banco GIS (GIS_DB_PASSWORD): ')
+    return config
 
 def conectar_banco():
     """Estabelece conexão com o banco de dados GIS"""
     try:
-        conn = psycopg2.connect(**DB_CONFIG)
+        conn = psycopg2.connect(**_get_db_config())
         print("✅ Conexão estabelecida com sucesso!")
         return conn
     except Exception as e:

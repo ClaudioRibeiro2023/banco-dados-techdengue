@@ -53,6 +53,13 @@ function Parse-DotEnv($path) {
   return $map
 }
 
+function Assert-Sql-NoPlaceholder($path) {
+  $raw = Get-Content -Path $path -Raw
+  if ($raw -match '<SENHA_FORTE>') {
+    throw "Arquivo contém placeholder <SENHA_FORTE>. Substitua por uma senha robusta antes de executar: $path"
+  }
+}
+
 Write-Section 'A0: Pré-checagens'
 Ensure-Cmd 'python'
 python --version
@@ -90,6 +97,7 @@ if (-not (Confirm-Step 'Prosseguir para A1 (opcional) criação de roles/usuári
 } else {
   Write-Section 'A1: Criar roles/usuário (td_writer/td_app) no Warehouse'
   if (-not (Test-Path $sqlInitPath)) { throw "Script SQL não encontrado: $sqlInitPath" }
+  Assert-Sql-NoPlaceholder $sqlInitPath
   if (-not (Get-Command 'psql' -ErrorAction SilentlyContinue)) {
     Write-Warning 'psql não encontrado no PATH. Instale o cliente do PostgreSQL ou rode esta etapa manualmente.'
   } else {
@@ -109,6 +117,7 @@ if (-not (Confirm-Step 'Prosseguir para A1-GIS (opcional) bootstrap do banco GIS
   Write-Section 'A1-GIS: Bootstrap do banco GIS (roles/usuario + schema)'
   if (-not (Test-Path $sqlGisInitPath)) { throw "Script SQL não encontrado: $sqlGisInitPath" }
   if (-not (Test-Path $sqlGisSchemaPath)) { throw "Script SQL não encontrado: $sqlGisSchemaPath" }
+  Assert-Sql-NoPlaceholder $sqlGisInitPath
   if (-not (Get-Command 'psql' -ErrorAction SilentlyContinue)) {
     Write-Warning 'psql não encontrado no PATH. Instale o cliente do PostgreSQL ou rode esta etapa manualmente.'
   } else {
