@@ -429,12 +429,12 @@ class TestGISEndpoints:
     def test_gis_banco_returns_200_or_500(self):
         """GET /gis/banco deve retornar 200 ou 500 (se DB offline)."""
         r = client.get("/gis/banco", params={"limit": 10})
-        assert r.status_code in [200, 500]
+        assert r.status_code == 200
     
     def test_gis_pois_returns_200_or_500(self):
         """GET /gis/pois deve retornar 200 ou 500 (se DB offline)."""
         r = client.get("/gis/pois", params={"limit": 10})
-        assert r.status_code in [200, 500]
+        assert r.status_code == 200
     
     def test_gis_pois_limit_bound(self):
         """Limit deve ser respeitado."""

@@ -159,8 +159,7 @@ class TestGISRouter:
     def test_gis_banco(self, client):
         """Endpoint /gis/banco pode retornar dados ou erro de conexão."""
         response = client.get("/gis/banco?limit=5")
-        # Pode ser 200 ou 500 dependendo da conexão com o banco
-        assert response.status_code in [200, 500]
+        assert response.status_code == 200
 
 
 class TestOpenAPI:

@@ -81,9 +81,9 @@ ROUTES_TO_TEST: List[RouteTest] = [
     # Gold Analise
     RouteTest("GET", "/gold/analise", {"limit": 5}, description="Análise integrada"),
     
-    # GIS (podem falhar se DB offline)
-    RouteTest("GET", "/gis/banco", params={"limit": 5}, expected_status=[200, 500], description="Dados GIS"),
-    RouteTest("GET", "/gis/pois", params={"limit": 5}, expected_status=[200, 500], description="POIs do campo"),
+    # GIS (modo Telos: pode retornar lista vazia se DB/dados ausentes)
+    RouteTest("GET", "/gis/banco", params={"limit": 5}, expected_status=[200], description="Dados GIS"),
+    RouteTest("GET", "/gis/pois", params={"limit": 5}, expected_status=[200], description="POIs do campo"),
     
     # Weather & Risk (podem falhar se APIs externas offline)
     RouteTest("GET", "/api/v1/weather/uberlandia", expected_status=[200, 404, 500, 503], description="Clima"),

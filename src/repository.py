@@ -176,7 +176,7 @@ class TechDengueRepository:
             query += f" LIMIT {limit}"
         
         logger.info(f"Buscando POIs de planilha_campo (limit={limit})")
-        return self.db.query_to_dataframe(query, parse_dates=['created_at', 'updated_at', 'deleted_at'])
+        return self.db.query_to_dataframe(query, parse_dates=['created_at', 'updated_at'])
     
     def get_planilha_campo_by_atividade(self, id_atividade: str) -> pd.DataFrame:
         """
