@@ -7,11 +7,13 @@ from unittest.mock import patch, MagicMock
 from fastapi.testclient import TestClient
 
 from src.api.app import app
+from src.database import DatabaseConnectionError
+from src.repository import TechDengueRepository
 
 
 @pytest.fixture
 def client():
-    """Cliente de teste para a API."""
+    """Cliente de teste FastAPI."""
     return TestClient(app)
 
 
@@ -160,6 +162,28 @@ class TestGISRouter:
         """Endpoint /gis/banco pode retornar dados ou erro de conexão."""
         response = client.get("/gis/banco?limit=5")
         assert response.status_code == 200
+
+    def test_gis_banco_strict_returns_503_on_expected_error(self, client, monkeypatch):
+        def _boom(self, limit: int = 100):
+            raise DatabaseConnectionError("simulated")
+
+        monkeypatch.setattr(TechDengueRepository, "get_banco_techdengue_all", _boom)
+        r = client.get("/gis/banco", params={"limit": 5, "strict": True})
+        assert r.status_code == 503
+        assert r.headers.get("X-TechDengue-Strict") == "true"
+        assert r.headers.get("X-TechDengue-Data-Available") == "false"
+        assert r.json().get("error") == "gis_unavailable"
+
+    def test_gis_pois_strict_returns_503_on_expected_error(self, client, monkeypatch):
+        def _boom(self, limit: int = 100):
+            raise DatabaseConnectionError("simulated")
+
+        monkeypatch.setattr(TechDengueRepository, "get_planilha_campo_all", _boom)
+        r = client.get("/gis/pois", params={"limit": 5, "strict": True})
+        assert r.status_code == 503
+        assert r.headers.get("X-TechDengue-Strict") == "true"
+        assert r.headers.get("X-TechDengue-Data-Available") == "false"
+        assert r.json().get("error") == "gis_unavailable"
 
 
 class TestOpenAPI:
