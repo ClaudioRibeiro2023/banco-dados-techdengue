@@ -33,9 +33,9 @@ function Ensure-Cmd($name) {
   }
 }
 
-function Exec($file, $args) {
-  $p = Start-Process -FilePath $file -ArgumentList $args -WorkingDirectory $root -NoNewWindow -Wait -PassThru
-  if ($p.ExitCode -ne 0) { throw "Falha ao executar: $file $args (ExitCode=$($p.ExitCode))" }
+function Exec($file, $argList) {
+  $p = Start-Process -FilePath $file -ArgumentList $argList -WorkingDirectory $root -NoNewWindow -Wait -PassThru
+  if ($p.ExitCode -ne 0) { throw "Falha ao executar: $file $argList (ExitCode=$($p.ExitCode))" }
 }
 
 function Parse-DotEnv($path) {
@@ -101,13 +101,13 @@ if (-not (Confirm-Step 'Prosseguir para A1 (opcional) criação de roles/usuári
   if (-not (Get-Command 'psql' -ErrorAction SilentlyContinue)) {
     Write-Warning 'psql não encontrado no PATH. Instale o cliente do PostgreSQL ou rode esta etapa manualmente.'
   } else {
-    $host = if ($envs.ContainsKey('WAREHOUSE_DB_HOST')) { $envs['WAREHOUSE_DB_HOST'] } else { Read-Host 'Host do Warehouse' }
+    $dbHost = if ($envs.ContainsKey('WAREHOUSE_DB_HOST')) { $envs['WAREHOUSE_DB_HOST'] } else { Read-Host 'Host do Warehouse' }
     $db = if ($envs.ContainsKey('WAREHOUSE_DB_NAME')) { $envs['WAREHOUSE_DB_NAME'] } else { Read-Host 'Database do Warehouse (ex.: techdengue_wh)' }
     $port = if ($envs.ContainsKey('WAREHOUSE_DB_PORT')) { $envs['WAREHOUSE_DB_PORT'] } else { '5432' }
     $adminUser = Read-Host 'Usuário admin para executar psql (NÃO é td_app)'
     Write-Host 'O psql solicitará a senha do usuário admin de forma segura.' -ForegroundColor Yellow
-    $args = @('-h', $host, '-p', $port, '-U', $adminUser, '-d', $db, '-f', $sqlInitPath)
-    Exec 'psql' ($args -join ' ')
+    $psqlArgs = @('-h', $dbHost, '-p', $port, '-U', $adminUser, '-d', $db, '-f', $sqlInitPath)
+    Exec 'psql' $psqlArgs
   }
 }
 
@@ -121,31 +121,37 @@ if (-not (Confirm-Step 'Prosseguir para A1-GIS (opcional) bootstrap do banco GIS
   if (-not (Get-Command 'psql' -ErrorAction SilentlyContinue)) {
     Write-Warning 'psql não encontrado no PATH. Instale o cliente do PostgreSQL ou rode esta etapa manualmente.'
   } else {
-    $host = if ($envs.ContainsKey('GIS_DB_HOST')) { $envs['GIS_DB_HOST'] } else { Read-Host 'Host do GIS' }
+    $dbHost = if ($envs.ContainsKey('GIS_DB_HOST')) { $envs['GIS_DB_HOST'] } else { Read-Host 'Host do GIS' }
     $db = if ($envs.ContainsKey('GIS_DB_NAME')) { $envs['GIS_DB_NAME'] } else { Read-Host 'Database do GIS' }
     $port = if ($envs.ContainsKey('GIS_DB_PORT')) { $envs['GIS_DB_PORT'] } else { '5432' }
     $adminUser = Read-Host 'Usuário admin para executar psql (NÃO é td_app)'
     Write-Host 'O psql solicitará a senha do usuário admin de forma segura.' -ForegroundColor Yellow
-    $args1 = @('-h', $host, '-p', $port, '-U', $adminUser, '-d', $db, '-f', $sqlGisInitPath)
-    Exec 'psql' ($args1 -join ' ')
-    $args2 = @('-h', $host, '-p', $port, '-U', $adminUser, '-d', $db, '-f', $sqlGisSchemaPath)
-    Exec 'psql' ($args2 -join ' ')
+    $psqlArgs1 = @('-h', $dbHost, '-p', $port, '-U', $adminUser, '-d', $db, '-f', $sqlGisInitPath)
+    Exec 'psql' $psqlArgs1
+    $psqlArgs2 = @('-h', $dbHost, '-p', $port, '-U', $adminUser, '-d', $db, '-f', $sqlGisSchemaPath)
+    Exec 'psql' $psqlArgs2
   }
 }
 
 Write-Section 'A2: Ingestão no Warehouse (fato_atividades_techdengue)'
 if (Confirm-Step 'Executar ingestão no Warehouse agora?' 'Y') {
-  Exec 'python' 'scripts/cli/gis_cli.py warehouse-ingest'
+  Exec 'python' @('scripts/cli/gis_cli.py', 'warehouse-ingest')
 } else { Write-Host 'Pulando A2.' -ForegroundColor Yellow }
 
 Write-Section 'A3: Validação da tabela (contagem + amostra)'
 if (Confirm-Step 'Validar tabela agora?' 'Y') {
-  Exec 'python' 'scripts/cli/gis_cli.py warehouse-validate --sample'
+  Exec 'python' @('scripts/cli/gis_cli.py', 'warehouse-validate', '--sample')
 } else { Write-Host 'Pulando A3.' -ForegroundColor Yellow }
+
+Write-Section 'A3b: Análise de qualidade (parquets + caches)'
+if (Confirm-Step 'Executar análise de qualidade agora?' 'Y') {
+  Exec 'python' @('scripts/analyze_data_quality.py')
+} else { Write-Host 'Pulando A3b.' -ForegroundColor Yellow }
 
 Write-Section 'A4: Materialização GOLD (analise_integrada)'
 if (Confirm-Step 'Materializar GOLD agora?' 'Y') {
-  Exec 'python' "-c \"from src.materialize import materialize_gold_analise; import json; r=materialize_gold_analise(); print(json.dumps(r, ensure_ascii=False))\""
+  $pyCode = 'from src.materialize import materialize_gold_analise; import json; result=materialize_gold_analise(); print(json.dumps(result, ensure_ascii=False))'
+  Exec 'python' @('-c', $pyCode)
 } else { Write-Host 'Pulando A4.' -ForegroundColor Yellow }
 
 Write-Section 'A5: Smoke da API (health + gold/analise)'

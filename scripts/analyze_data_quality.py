@@ -117,3 +117,24 @@ if mega_path.exists():
     for col in df2.columns:
         if 'ano' in col.lower() or 'year' in col.lower():
             print(f"\n{col}: {sorted(df2[col].dropna().unique())}")
+
+cache_banco_path = Path("cache/banco_techdengue.parquet")
+if cache_banco_path.exists():
+    print("\n" + "=" * 60)
+    print("ANÁLISE: cache/banco_techdengue.parquet")
+    print("=" * 60)
+    df3 = pd.read_parquet(cache_banco_path)
+    print(f"Total de registros: {len(df3):,}")
+    if "data_criacao" in df3.columns:
+        pct = float(df3["data_criacao"].isna().mean() * 100)
+        print(f"data_criacao nulos: {pct:.1f}%")
+        if pct >= 99.9:
+            print("⚠️  data_criacao está totalmente nulo no cache")
+
+cache_pois_path = Path("cache/planilha_campo.parquet")
+if cache_pois_path.exists():
+    print("\n" + "=" * 60)
+    print("ANÁLISE: cache/planilha_campo.parquet")
+    print("=" * 60)
+    df4 = pd.read_parquet(cache_pois_path)
+    print(f"Total de registros: {len(df4):,}")
