@@ -53,16 +53,16 @@ Esta pasta contém toda a documentação do projeto organizada por categoria.
 
 Documentação do Design System enterprise-grade implementado (v3.0.0):
 
-| Documento | Descrição | Prioridade |
-|-----------|-----------|------------|
-| **[README Design System](design-system/README_DESIGN_SYSTEM.md)** | Índice geral - Comece aqui | 🔴 Alta |
-| **[Quick Start](design-system/QUICK_START_DESIGN_SYSTEM.md)** | Guia prático de 5 minutos | 🔴 Alta |
-| **[Design System Completo](design-system/DESIGN_SYSTEM_COMPLETO.md)** | Referência técnica completa | 🟡 Média |
-| **[Guia de Validação](design-system/GUIA_VALIDACAO_DESIGN_SYSTEM.md)** | Checklist de testes | 🟡 Média |
-| **[Relatório Final](design-system/RELATORIO_FINAL_IMPLEMENTACAO.md)** | Implementação detalhada | 🟢 Baixa |
-| **[Discovery (Fase 1)](design-system/FASE1_DISCOVERY_RELATORIO.md)** | Auditoria inicial | 🟢 Baixa |
-| **[Wireframes (Fase 3)](design-system/WIREFRAMES_FASE3.md)** | IA e estrutura | 🟢 Baixa |
-| **[UI/UX Moderno V3](design-system/UI_UX_MODERNO_V3.md)** | Evolução visual | 🟢 Baixa |
+|Documento|Descrição|Prioridade|
+|---|---|---|
+|**[README Design System](design-system/README_DESIGN_SYSTEM.md)**|Índice geral - Comece aqui|🔴 Alta|
+|**[Quick Start](design-system/QUICK_START_DESIGN_SYSTEM.md)**|Guia prático de 5 minutos|🔴 Alta|
+|**[Design System Completo](design-system/DESIGN_SYSTEM_COMPLETO.md)**|Referência técnica completa|🟡 Média|
+|**[Guia de Validação](design-system/GUIA_VALIDACAO_DESIGN_SYSTEM.md)**|Checklist de testes|🟡 Média|
+|**[Relatório Final](design-system/RELATORIO_FINAL_IMPLEMENTACAO.md)**|Implementação detalhada|🟢 Baixa|
+|**[Discovery (Fase 1)](design-system/FASE1_DISCOVERY_RELATORIO.md)**|Auditoria inicial|🟢 Baixa|
+|**[Wireframes (Fase 3)](design-system/WIREFRAMES_FASE3.md)**|IA e estrutura|🟢 Baixa|
+|**[UI/UX Moderno V3](design-system/UI_UX_MODERNO_V3.md)**|Evolução visual|🟢 Baixa|
 
 ---
 
@@ -70,12 +70,12 @@ Documentação do Design System enterprise-grade implementado (v3.0.0):
 
 Documentação da arquitetura de dados e sistema:
 
-| Documento | Descrição |
-|-----------|-----------|
-| **[Arquitetura de Dados](architecture/ARQUITETURA_DADOS_DEFINITIVA.md)** | Medallion Architecture (Bronze/Silver/Gold) |
-| **[Estrutura do Projeto](architecture/ESTRUTURA_PROJETO.md)** | Organização de pastas e arquivos |
-| **[Sistema Completo](architecture/SISTEMA_COMPLETO.md)** | Visão geral técnica |
-| **[Estratégia de Integridade](architecture/ESTRATEGIA_INTEGRIDADE_DADOS.md)** | Qualidade e validações |
+|Documento|Descrição|
+|---|---|
+|**[Arquitetura de Dados](architecture/ARQUITETURA_DADOS_DEFINITIVA.md)**|Medallion Architecture (Bronze/Silver/Gold)|
+|**[Estrutura do Projeto](architecture/ESTRUTURA_PROJETO.md)**|Organização de pastas e arquivos|
+|**[Sistema Completo](architecture/SISTEMA_COMPLETO.md)**|Visão geral técnica|
+|**[Estratégia de Integridade](architecture/ESTRATEGIA_INTEGRIDADE_DADOS.md)**|Qualidade e validações|
 
 ---
 
@@ -83,13 +83,13 @@ Documentação da arquitetura de dados e sistema:
 
 Tutoriais e guias passo a passo:
 
-| Documento | Descrição |
-|-----------|-----------|
-| **[Início Rápido](guides/INICIO_RAPIDO.md)** | Tutorial básico |
-| **[Próximos Passos](guides/PROXIMOS_PASSOS.md)** | Roadmap e melhorias |
-| **[Guia de Navegação](guides/GUIA_NAVEGACAO.md)** | Como navegar no dashboard |
-| **[Integração GIS](guides/GUIA_INTEGRACAO_GIS.md)** | PostGIS e dados espaciais |
-| **[Dashboard de Gestão](guides/DASHBOARD_GESTAO.md)** | Gerenciamento |
+|Documento|Descrição|
+|---|---|
+|**[Início Rápido](guides/INICIO_RAPIDO.md)**|Tutorial básico|
+|**[Próximos Passos](guides/PROXIMOS_PASSOS.md)**|Roadmap e melhorias|
+|**[Guia de Navegação](guides/GUIA_NAVEGACAO.md)**|Como navegar no dashboard|
+|**[Integração GIS](guides/GUIA_INTEGRACAO_GIS.md)**|PostGIS e dados espaciais|
+|**[Dashboard de Gestão](guides/DASHBOARD_GESTAO.md)**|Gerenciamento|
 
 ---
 
@@ -97,13 +97,13 @@ Tutoriais e guias passo a passo:
 
 Análises e resumos executivos:
 
-| Documento | Descrição |
-|-----------|-----------|
-| **[Resumo Final de Implementação](reports/RESUMO_FINAL_IMPLEMENTACAO.md)** | Entregas completas |
-| **[Análise de Dados](reports/RESUMO_ANALISE_DADOS.md)** | Análise das bases de dados |
-| **[Resumo Final da Solução](reports/RESUMO_FINAL_SOLUCAO.md)** | Solução implementada |
-| **[Sumário do Trabalho](reports/SUMARIO_TRABALHO_REALIZADO.md)** | Histórico de desenvolvimento |
-| **[Respostas a Questões](reports/RESPOSTA_QUESTOES_INICIAIS.md)** | Q&A inicial |
+|Documento|Descrição|
+|---|---|
+|**[Resumo Final de Implementação](reports/RESUMO_FINAL_IMPLEMENTACAO.md)**|Entregas completas|
+|**[Análise de Dados](reports/RESUMO_ANALISE_DADOS.md)**|Análise das bases de dados|
+|**[Resumo Final da Solução](reports/RESUMO_FINAL_SOLUCAO.md)**|Solução implementada|
+|**[Sumário do Trabalho](reports/SUMARIO_TRABALHO_REALIZADO.md)**|Histórico de desenvolvimento|
+|**[Respostas a Questões](reports/RESPOSTA_QUESTOES_INICIAIS.md)**|Q&A inicial|
 
 ---
 

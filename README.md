@@ -18,18 +18,20 @@
 
 ## 📋 Índice
 
-- [Visão Geral](#visão-geral)
-- [Stack Tecnológica](#stack-tecnológica)
-- [Como Executar](#como-executar)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [API](#api)
-- [Testes](#testes)
-- [Deploy](#deploy)
-- [Documentação](#documentação)
+- [Visão Geral](#-visao-geral)
+- [Stack Tecnológica](#-stack-tecnologica)
+- [Como Executar](#-como-executar)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [API](#-api)
+- [Testes](#-testes)
+- [Deploy](#-deploy)
+- [Documentação](#-documentacao)
 
 ---
 
-## 🎯 Visão Geral
+<a id="-visao-geral"></a>
+
+## 🎯 Visao Geral
 
 O TechDengue é uma plataforma de dados para:
 
@@ -40,24 +42,28 @@ O TechDengue é uma plataforma de dados para:
 
 ### Principais Funcionalidades
 
-| Funcionalidade | Descrição |
-|----------------|-----------|
-| **Dashboard Analytics** | Interface React moderna com gráficos e tabelas |
-| **API REST** | Endpoints para consulta de dados |
-| **Data Lake** | Arquitetura Medallion (Bronze/Silver/Gold) |
-| **Qualidade de Dados** | Validações automáticas e monitoramento |
+|Funcionalidade|Descrição|
+|---|---|
+|**Dashboard Analytics**|Interface React moderna com gráficos e tabelas|
+|**API REST**|Endpoints para consulta de dados|
+|**Data Lake**|Arquitetura Medallion (Bronze/Silver/Gold)|
+|**Qualidade de Dados**|Validações automáticas e monitoramento|
 
 ---
 
-## 🛠️ Stack Tecnológica
+<a id="-stack-tecnologica"></a>
+
+## 🛠️ Stack Tecnologica
 
 ### Backend
+
 - **Python 3.11+** + **FastAPI** - API REST
 - **PostgreSQL/PostGIS** - Banco de dados GIS
 - **Redis (Upstash)** - Cache e rate limiting
 - **Pydantic** - Validação de dados
 
 ### Frontend
+
 - **React 18** + **TypeScript**
 - **Vite** - Build tool
 - **TailwindCSS** - Estilização
@@ -65,6 +71,7 @@ O TechDengue é uma plataforma de dados para:
 - **Radix UI** - Componentes acessíveis
 
 ### Infraestrutura
+
 - **Netlify** - Deploy do frontend
 - **Railway** - Deploy da API (https://banco-dados-techdengue-production.up.railway.app)
 - **GitHub Actions** - CI/CD
@@ -73,7 +80,7 @@ O TechDengue é uma plataforma de dados para:
 
 ## 🏗️ Arquitetura
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                         FRONTEND (React)                        │
 │                    banco-dados-techdengue.netlify.app           │
@@ -97,13 +104,15 @@ O TechDengue é uma plataforma de dados para:
 
 ### Data Lake (Medallion Architecture)
 
-| Camada | Descrição | Formato |
-|--------|-----------|---------|
-| **Bronze** | Dados brutos da coleta | Parquet |
-| **Silver** | Dados limpos e validados | Parquet |
-| **Gold** | Dados agregados para análise | Parquet |
+|Camada|Descrição|Formato|
+|---|---|---|
+|**Bronze**|Dados brutos da coleta|Parquet|
+|**Silver**|Dados limpos e validados|Parquet|
+|**Gold**|Dados agregados para análise|Parquet|
 
 ---
+
+<a id="-como-executar"></a>
 
 ## 🚀 Como Executar
 
@@ -167,9 +176,11 @@ Dashboard disponível em: http://localhost:8501
 
 ---
 
+<a id="-estrutura-do-projeto"></a>
+
 ## 📂 Estrutura do Projeto
 
-```
+```text
 banco-dados-techdengue/
 ├── src/                    # 🐍 Backend Python
 │   ├── api/               # Endpoints FastAPI
@@ -223,21 +234,21 @@ banco-dados-techdengue/
 
 ### Principais Endpoints
 
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| GET | `/health` | Health check |
-| GET | `/monitor` | Status consolidado (datasets, métricas e indicadores) |
-| GET | `/quality` | Relatório de qualidade dos dados |
-| GET | `/datasets` | Catálogo de datasets disponíveis |
-| GET | `/api/v1/status` | Status detalhado do sistema |
-| GET | `/facts` | Atividades TechDengue (filtros, paginação e export) |
-| GET | `/facts/summary` | Resumo agregado das atividades |
-| GET | `/dengue` | Dados históricos de dengue (filtros e export) |
-| GET | `/municipios` | Dados dos municípios de MG (filtros e export) |
-| GET | `/gold/analise` | Análise integrada consolidada (camada Gold) |
-| GET | `/api/v1/weather/{cidade}` | Clima atual + índice de favorabilidade para dengue |
-| POST | `/api/v1/risk/analyze` | Análise de risco (IA) |
-| GET | `/api/v1/risk/dashboard` | Dashboard de risco consolidado |
+|Método|Endpoint|Descrição|
+|---|---|---|
+|GET|`/health`|Health check|
+|GET|`/monitor`|Status consolidado (datasets, métricas e indicadores)|
+|GET|`/quality`|Relatório de qualidade dos dados|
+|GET|`/datasets`|Catálogo de datasets disponíveis|
+|GET|`/api/v1/status`|Status detalhado do sistema|
+|GET|`/facts`|Atividades TechDengue (filtros, paginação e export)|
+|GET|`/facts/summary`|Resumo agregado das atividades|
+|GET|`/dengue`|Dados históricos de dengue (filtros e export)|
+|GET|`/municipios`|Dados dos municípios de MG (filtros e export)|
+|GET|`/gold/analise`|Análise integrada consolidada (camada Gold)|
+|GET|`/api/v1/weather/{cidade}`|Clima atual + índice de favorabilidade para dengue|
+|POST|`/api/v1/risk/analyze`|Análise de risco (IA)|
+|GET|`/api/v1/risk/dashboard`|Dashboard de risco consolidado|
 
 ### Endpoints GIS (degradação e modo estrito)
 
@@ -286,10 +297,10 @@ npm run test -- --watch
 
 ### Status dos Testes
 
-| Suite | Passando | Total |
-|-------|----------|-------|
-| Backend | 68 | 70 |
-| Frontend | 18 | 18 |
+|Suite|Passando|Total|
+|---|---|---|
+|Backend|68|70|
+|Frontend|18|18|
 
 ---
 
@@ -298,6 +309,7 @@ npm run test -- --watch
 ### Frontend (Netlify)
 
 O deploy é automático via GitHub:
+
 - Branch `main` → Produção
 - Pull Requests → Preview
 
@@ -323,16 +335,16 @@ docker-compose up
 
 ---
 
-## 📚 Documentação
+## 📚 Documentacao
 
-| Documento | Descrição |
-|-----------|-----------|
-| [DEPLOY_GUIDE.md](DEPLOY_GUIDE.md) | Guia completo de deploy |
-| [GUIA_INTEGRACAO.md](GUIA_INTEGRACAO.md) | Integração com a API |
-| [docs/BOOK_DE_TESTES.md](docs/BOOK_DE_TESTES.md) | Book de testes |
-| [docs/architecture/](docs/architecture/) | Documentação de arquitetura |
-| [docs/guides/](docs/guides/) | Guias práticos |
-| [RELATORIO_GERENCIAL_DADOS.md](RELATORIO_GERENCIAL_DADOS.md) | Relatório gerencial consolidado (KPIs, top municípios, evolução mensal) |
+|Documento|Descrição|
+|---|---|
+|[DEPLOY_GUIDE.md](DEPLOY_GUIDE.md)|Guia completo de deploy|
+|[GUIA_INTEGRACAO.md](GUIA_INTEGRACAO.md)|Integração com a API|
+|[docs/BOOK_DE_TESTES.md](docs/BOOK_DE_TESTES.md)|Book de testes|
+|[docs/architecture/](docs/architecture/)|Documentação de arquitetura|
+|[docs/guides/](docs/guides/)|Guias práticos|
+|[RELATORIO_GERENCIAL_DADOS.md](RELATORIO_GERENCIAL_DADOS.md)|Relatório gerencial consolidado (KPIs, top municípios, evolução mensal)|
 
 ---
 
